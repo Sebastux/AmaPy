@@ -1,0 +1,7 @@
+ pandas
+ openpyxl
+ pyqt6
+ ruff
+ pyinstaller
+ requests
+beautifulsoup4
