@@ -1,7 +1,10 @@
- pandas
- openpyxl
- pyqt6
- ruff
- pyinstaller
- requests
+pandas
+requests
 beautifulsoup4
+XlsxWriter
+PyQt6
+pyinstaller
+ruff
+pylint
+flake8
+matplotlib
