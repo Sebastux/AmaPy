@@ -1,10 +1,9 @@
 from typing import Optional
 from dataclasses import dataclass
-from  datetime import date
+from datetime import date
 import json
 
 import pandas as pd
-
 
 
 @dataclass
@@ -82,10 +81,25 @@ class AmazonDatas:
             f.write(json_data)
 
     def import_datas_to_csv(self, chemin_fic: str) -> bool:
+        """
+        En cours de dev
+        :param chemin_fic:
+        :return:
+        """
         pass
 
     def import_datas_to_excell(self, chemin_fic: str) -> bool:
+        """
+        En cours de dev
+        :param chemin_fic:
+        :return:
+        """
         pass
 
     def import_datas_to_json(self, chemin_fic: str) -> bool:
+        """
+        En cours de dev
+        :param chemin_fic:
+        :return:
+        """
         pass

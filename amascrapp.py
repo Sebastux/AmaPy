@@ -1,3 +1,7 @@
+"""
+   Module permettant l'extraction et le traitement des données extraite des pages Amazon.
+"""
+
 import random
 import os
 from datetime import date
@@ -9,11 +13,19 @@ from dtcamazon import AmazonDatas
 
 
 class AmaScrapp:
+    """
+    Classe permettant l'extraction et le traitement des données extraite des pages Amazon.
+    """
     def __init__(self):
         self.article = AmazonDatas()
         self.user_agent = ""
 
-    def get_user_agent(self):
+    def get_user_agent(self) -> None:
+        """
+        Méthode qui permet de choisir un user agent au hasard parmi une liste contenue dans un fichier.
+        la méthode met à jour la variable d'instance
+        :return: None
+        """
         try:
             with open(os.path.join("datas", "user-agents.txt"), "r+t", encoding="utf-8") as f:
                 ligne = f.readlines()
@@ -28,12 +40,22 @@ class AmaScrapp:
                                    "Mozilla/5.0 (Linux; U; Android 4.0.3; en-us; KFTT Build/IML74K) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36"}
 
     def get_article_name(self, soup: BeautifulSoup) -> None:
+        """
+        Méthode qui permet la récupération du nom du produit.
+        :param soup: Objet BeautifullSoup permettant la récupération de l'information
+        :return: None
+        """
         try:
             self.article.nom_produit = soup.find("div", attrs={'id': 'titleSection'}).getText().strip()
         except AttributeError:
             self.article.nom_produit = "Inconnu"
 
     def get_article_price(self, soup: BeautifulSoup) -> None:
+        """
+        Méthode qui permet la récupération du prix du produit.
+        :param soup: Objet BeautifullSoup permettant la récupération de l'information
+        :return: None
+        """
         try:
             prix = soup.find("span", attrs={"class": "a-offscreen"}).getText().replace(",", ".")
             self.article.prix = float(prix.replace(prix[-1], ""))
@@ -46,6 +68,11 @@ class AmaScrapp:
             self.article.monnaie = "F"
 
     def get_article_note(self, soup: BeautifulSoup) -> None:
+        """
+        Méthode qui permet la récupération de la note du produit.
+        :param soup: Objet BeautifullSoup permettant la récupération de l'information
+        :return: None
+        """
         try:
             note_str = soup.find("span", class_="a-icon-alt").getText().strip()
             self.article.note = float(note_str.split()[0].replace(",", "."))
@@ -53,6 +80,11 @@ class AmaScrapp:
             self.article.note = 0.0
 
     def get_article_status(self, soup: BeautifulSoup) -> None:
+        """
+        Méthode qui permet la récupération du status du produit.
+        :param soup: Objet BeautifullSoup permettant la récupération de l'information
+        :return: None
+        """
         try:
             available = soup.find("div", attrs={'id': 'availability'})
             if available is not None:
@@ -69,6 +101,11 @@ class AmaScrapp:
                 self.article.status_produit = soup.find("span", attrs={"class": "a-color-price a-text-bold"}).getText().strip()
 
     def get_article_review(self, soup: BeautifulSoup) -> None:
+        """
+        Méthode qui permet la récupération du nombre de note du produit.
+        :param soup: Objet BeautifullSoup permettant la récupération de l'information
+        :return: None
+        """
         try:
             result = soup.find("span", attrs={'id': 'acrCustomerReviewText'}).getText().strip().split()[0:2]
             result.remove("évaluations")
@@ -79,11 +116,21 @@ class AmaScrapp:
             self.article.evaluation = 0
 
     def get_article_description(self, soup: BeautifulSoup) -> None:
+        """
+        Méthode qui permet la récupération de la description du produit.
+        :param soup: Objet BeautifullSoup permettant la récupération de l'information
+        :return: None
+        """
         self.article.description = soup.find('div', {'id': "productDescription"}).getText().strip()
         if len(self.article.description) == 0:
             self.article.description = "Inconnue"
 
     def get_article(self, url: str) -> None:
+        """
+        Méthode qui permet la récupération de l'ensemble des informations du produit
+        :param url: url du produit à traiter
+        :return: None
+        """
         self.article.url = url
         self.get_user_agent()
         page = requests.get(url=self.article.url, headers=self.user_agent, timeout=5)
@@ -99,7 +146,11 @@ class AmaScrapp:
             self.article.date_creation = date.today().strftime("%d/%m/%Y")
             self.article.date_maj = date.today().strftime("%d/%m/%Y")
 
-    def export_to_dict(self):
+    def export_to_dict(self) -> dict:
+        """
+        Méthode permettant l'exportation des données produit seus formede dictionnaire.
+        :return: Dictionnaire contenant les informations produit
+        """
         dict_article = {
             "url": self.article.url,
             "nom produit": self.article.nom_produit,
@@ -114,11 +165,26 @@ class AmaScrapp:
         }
         return dict_article
 
-    def export_to_excell(self, chemin_fic: str):
+    def export_to_excell(self, chemin_fic: str) -> None:
+        """
+        Méthode permettant l'export de données dans un fichier excell au format xlsx
+        :param chemin_fic:  chemin du fichier de destination
+        :return: None
+        """
         self.article.export_datas_to_excell(chemin_fic)
 
-    def export_to_csv(self, chemin_fic: str):
+    def export_to_csv(self, chemin_fic: str) -> None:
+        """
+        Méthode permettant l'export de données dans un fichier au format csv
+        :param chemin_fic:  chemin du fichier de destination
+        :return: None
+        """
         self.article.export_datas_to_csv(chemin_fic)
 
-    def export_to_json(self, chemin_fic: str):
+    def export_to_json(self, chemin_fic: str) -> None:
+        """
+        Méthode permettant l'export de données dans un fichier au format json
+        :param chemin_fic:  chemin du fichier de destination
+        :return: None
+        """
         self.article.export_datas_to_json(chemin_fic)
