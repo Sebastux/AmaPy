@@ -114,7 +114,11 @@ class AmaScrapp:
         }
         return dict_article
 
-    def export_file(self):
-        self.article.export_datas_to_excell("/home/Sebastien/Dépots/publique/AmaPy/export.xlsx")
-        # self.article.export_datas_to_csv("/home/Sebastien/Dépots/publique/AmaPy/export.csv")
-        # self.article.export_datas_to_json("/home/Sebastien/Dépots/publique/AmaPy/export.json")
+    def export_to_excell(self, chemin_fic: str):
+        self.article.export_datas_to_excell(chemin_fic)
+
+    def export_to_csv(self, chemin_fic: str):
+        self.article.export_datas_to_csv(chemin_fic)
+
+    def export_to_json(self, chemin_fic: str):
+        self.article.export_datas_to_json(chemin_fic)
