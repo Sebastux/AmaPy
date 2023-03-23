@@ -52,7 +52,7 @@ ignore=CVS
 # ignore-list. The regex matches against paths and can be in Posix or Windows
 # format. Because '\\' represents the directory delimiter on Windows systems,
 # it can't be used as an escape character.
-ignore-paths=datas
+ignore-paths=datas requetes bdd
 
 # Files or directories matching the regular expression patterns are skipped.
 # The regex matches against base names, not paths. The default value ignores
@@ -189,11 +189,11 @@ function-naming-style=snake_case
 good-names=i,
            j,
            k,
-	   d,
-	   e,
-	   f,
-	   pd,
-	   df,
+	       d,
+	       e,
+	       f,
+	       pd,
+	       df,
            ex,
            Run,
            _
@@ -203,7 +203,7 @@ good-names=i,
 good-names-rgxs=
 
 # Include a hint for the correct naming format with invalid-name.
-include-naming-hint=no
+include-naming-hint=yes
 
 # Naming style matching correct inline iteration names.
 inlinevar-naming-style=any
@@ -329,7 +329,7 @@ overgeneral-exceptions=builtins.BaseException,builtins.Exception
 [FORMAT]
 
 # Expected format of line ending, e.g. empty (any line ending), LF or CRLF.
-expected-line-ending-format=
+expected-line-ending-format=LF
 
 # Regexp for a line that is allowed to be longer than the limit.
 ignore-long-lines=^\s*(# )?<?https?://\S+>?$
