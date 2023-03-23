@@ -153,7 +153,7 @@ class AmaScrapp:
         """
         dict_article = {
             "url": self.article.url,
-            "nom produit": self.article.nom_produit,
+            "nom_produit": self.article.nom_produit,
             "note": self.article.note,
             "description": self.article.description,
             "evaluation": self.article.evaluation,
