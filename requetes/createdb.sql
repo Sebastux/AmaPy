@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS "amatable" (
 	"evaluation"	INTEGER,
 	"status_produit"	TEXT,
 	"date_creation"	TEXT,
+	"url"	TEXT,
 	PRIMARY KEY("keyzon" AUTOINCREMENT)
 );
 
