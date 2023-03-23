@@ -22,6 +22,7 @@ class AmazonDatas:
     date_creation: Optional[str] = date.today().strftime("%d/%m/%Y")
     date_maj: Optional[str] = date.today().strftime("%d/%m/%Y")
 
+
     def export_datas_to_csv(self, chemin_fic: str) -> None:
         """
             Méthode qui permet de stocker le contenu des variables
