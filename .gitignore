@@ -124,3 +124,6 @@ dmypy.json
 
 # fichiers pycharm
 .idea
+
+# Répertoire de la DB
+bdd
