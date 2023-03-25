@@ -122,7 +122,7 @@ class AmazDB:
 
     def update_price(self, product: dict) -> None:
         """
-        
+
         :param product:
         :return:
         """
@@ -142,3 +142,10 @@ class AmazDB:
         df = pd.DataFrame(data=d)
         df.to_excel(chemin_fic, sheet_name="Export amapy", engine='xlsxwriter',
                     header=True, float_format="%.2f", index=False)
+
+    def export_product_to_excell(self, chemin_fic: str, chemin_fic: str) -> None:
+        """
+
+        :param chemin_fic:
+        :return:
+        """
