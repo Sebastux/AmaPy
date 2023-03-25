@@ -71,7 +71,7 @@ class AmazDB:
         self.curseur_db.execute(requete)
         row = self.curseur_db.fetchone()
 
-        if commit is True
+        if commit is True:
             self.connecteur_db.commit()
         return row
 
@@ -85,7 +85,7 @@ class AmazDB:
         self.curseur_db.executescript(requetes)
         row = self.curseur_db.fetchone()
 
-        if commit is True
+        if commit is True:
             self.connecteur_db.commit()
         return row
 
