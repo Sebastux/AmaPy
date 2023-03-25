@@ -6,14 +6,24 @@ import pandas as pd
 
 class AmazDB:
     def __init__(self, chemin_fic: str):
+        # Création des requêtes
+        self.__req1 = "INSERT INTO amatable (nom_produit, note, description, evaluation, \
+                      status_produit, date_creation, url) VALUES(?, ?, ?, ?, ?, ?, ?);"
+
+        self.__req2 = "INSERT INTO tblprix (keyzon, prix, monnaie, date_maj) VALUES(?, ?, ?, ?);"
+
+        # Création des variables d'instance
         self.chemin_fic = chemin_fic
         self.connecteur_db = None
         self.curseur_db = None
 
+        # Gestion de la BDD
         if os.path.exists(chemin_fic):
             self.open_db_fic()
         else:
             self.create_db_fic()
+
+        # self.connecteur_db.row_factory = sqlite3.Row
 
     def create_db_fic(self) -> None:
         """
@@ -51,25 +61,33 @@ class AmazDB:
             requete = f.read()
             self.curseur_db.executescript(requete)
 
-    def make_request(self, requete: str):
+    def make_request(self, requete: str, commit: bool = False):
         """
 
         :param requete:
+        :param commit:
         :return:
         """
-        retour = self.curseur_db.execute(requete)
-        self.connecteur_db.commit()
-        return retour
+        self.curseur_db.execute(requete)
+        row = self.curseur_db.fetchone()
 
-    def make_requests(self, requetes: str):
+        if commit is True
+            self.connecteur_db.commit()
+        return row
+
+    def make_requests(self, requetes: str, commit: bool = False):
         """
 
         :param requetes:
+        :param commit:
         :return:
         """
-        retour = self.curseur_db.execute(requetes)
-        self.connecteur_db.commit()
-        return retour
+        self.curseur_db.executescript(requetes)
+        row = self.curseur_db.fetchone()
+
+        if commit is True
+            self.connecteur_db.commit()
+        return row
 
     def add_product(self, product: dict) -> None:
         """
@@ -77,10 +95,17 @@ class AmazDB:
         :param product:
         :return:
         """
-        req1 = "INSERT INTO amatable (nom_produit, note, description, evaluation, status_produit, date_creation, url) VALUES(?, ?, ?, ?, ?, ?, ?);"
-        req2 = "INSERT INTO tblprix (keyzon, prix, monnaie, date_maj) VALUES(?, ?, ?, ?);"
-        self.curseur_db.execute(req1, [product["nom produit"], product["note"], product["description"],product["evaluation"], product["status_produit"], product["date_creation"], product["url"]])
-        self.curseur_db.execute(req2, [1, product["prix"], product["monnaie"], product["date_maj"]])
+        self.curseur_db.execute("SELECT MAX(keyzon) FROM amatable LIMIT 1;")
+        max_key = self.curseur_db.fetchone()
+        if max_key[0] is None:
+            max_key = 1
+        else:
+            max_key = max_key[0] + 1
+        self.curseur_db.execute(self.__req1, [product["nom produit"], product["note"], product["description"],
+                                              product["evaluation"], product["status_produit"],
+                                              product["date_creation"], product["url"]])
+
+        self.curseur_db.execute(self.__req2, [max_key, product["prix"], product["monnaie"], product["date_maj"]])
         self.connecteur_db.commit()
 
     def remove_product(self) -> None:
@@ -88,21 +113,18 @@ class AmazDB:
 
         :return:
         """
-        pass
 
     def update_product(self) -> None:
         """
 
         :return:
         """
-        pass
 
     def update_price(self) -> None:
         """
 
         :return:
         """
-        pass
 
     def export_datas_to_excell(self, chemin_fic: str) -> None:
         """
