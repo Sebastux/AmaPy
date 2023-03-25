@@ -57,9 +57,9 @@ class AmazDB:
 
         :return:
         """
-        with open(os.path.join("requetes", "droptables.sql"), "r+t", encoding="utf-8") as f:
-            requete = f.read()
-            self.curseur_db.executescript(requete)
+        self.connecteur_db.commit()
+        self.connecteur_db.close()
+        self.create_db_fic()
 
     def make_request(self, requete: str, commit: bool = False):
         """
