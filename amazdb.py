@@ -128,26 +128,31 @@ class AmazDB:
         :return:
         """
 
-    def export_datas_to_excell(self, chemin_fic: str) -> None:
+    def export_datas_to_excell(self, chemin_fic: str, product: dict) -> None:
         """
-        Méthode qui permet de stocker le contenu de la requete
-        dans un fichier au format excell
-        :param chemin_fic: Chemin du fichier excell
-        :return: None
-        """
-        # Création du dataframe
-        d = {}
 
-        self.curseur_db.execute("")
-
-        df = pd.DataFrame(data=d)
-        df.to_excel(chemin_fic, sheet_name="Export amapy", engine='xlsxwriter',
-                    header=True, float_format="%.2f", index=False)
-
-    def export_product_to_excell(self, chemin_fic: str, product: dict) -> None:
-        """
-        
         :param chemin_fic:
         :param product:
         :return:
         """
+        df = pd.DataFrame(data=product)
+        df.to_excel(chemin_fic, sheet_name="Export amapy", engine='xlsxwriter',
+                    header=True, float_format="%.2f", index=False)
+
+    def export_products_to_excell(self, chemin_fic: str, list_product: list) -> None:
+        """
+
+        :param chemin_fic:
+        :param list_product:
+        :return:
+        """
+
+        if len(list_product) == 1:
+            self.export_datas_to_excell(chemin_fic, list_product[0])
+        elif len(list_product) > 1:
+            df = pd.DataFrame(list_product[0], index=[0])
+            for i in range(1, len(list_product)):
+                df.loc[i] = list_product[i]
+
+            df.to_excel(chemin_fic, sheet_name="Export amapy", engine='xlsxwriter',
+                        header=True, float_format="%.2f", index=False)
