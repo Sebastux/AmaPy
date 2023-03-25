@@ -59,6 +59,7 @@ class AmazDB:
         """
         self.connecteur_db.commit()
         self.connecteur_db.close()
+        os.remove(self.chemin_fic)
         self.create_db_fic()
 
     def make_request(self, requete: str, commit: bool = False):
