@@ -10,12 +10,11 @@ CREATE TABLE IF NOT EXISTS "amatable" (
 	PRIMARY KEY("keyzon" AUTOINCREMENT)
 );
 
-CREATE TABLE IF NOT EXISTS "tblprix" (
-	"prixzon"	INTEGER NOT NULL UNIQUE,
-	"keyzon"	INTEGER,
+CREATE TABLE "tblprix" (
+	"keyzon"	INTEGER NOT NULL,
 	"prix"	REAL,
 	"monnaie"	TEXT,
 	"date_maj"	TEXT,
-	PRIMARY KEY("prixzon" AUTOINCREMENT),
 	FOREIGN KEY("keyzon") REFERENCES "amatable"("keyzon")
 );
+PRAGMA foreign_keys = ON;
