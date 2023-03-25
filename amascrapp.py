@@ -37,7 +37,11 @@ class AmaScrapp:
                                    }
         except FileNotFoundError:
             self.user_agent = {"user-agent":
-                                   "Mozilla/5.0 (Linux; U; Android 4.0.3; en-us; KFTT Build/IML74K) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36"}
+                               "Mozilla/5.0 (Linux; U; Android 4.0.3; en-us; KFTT Build/IML74K) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36",
+                               "Accept-Language": "fr-FR,fr;q=0.5",
+                               "Accept-Encoding": "gzip, deflate, br",
+                                "DNT": "1",
+                               }
 
     def get_article_name(self, soup: BeautifulSoup) -> None:
         """
