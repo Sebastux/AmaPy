@@ -143,9 +143,10 @@ class AmazDB:
         df.to_excel(chemin_fic, sheet_name="Export amapy", engine='xlsxwriter',
                     header=True, float_format="%.2f", index=False)
 
-    def export_product_to_excell(self, chemin_fic: str, chemin_fic: str) -> None:
+    def export_product_to_excell(self, chemin_fic: str, product: dict) -> None:
         """
-
+        
         :param chemin_fic:
+        :param product:
         :return:
         """
