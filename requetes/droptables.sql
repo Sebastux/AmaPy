@@ -1,2 +1,0 @@
-DROP TABLE IF EXISTS "amatable";
-DROP TABLE IF EXISTS "tblprix";
