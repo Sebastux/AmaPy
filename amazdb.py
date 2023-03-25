@@ -108,21 +108,22 @@ class AmazDB:
         self.curseur_db.execute(self.__req2, [max_key, product["prix"], product["monnaie"], product["date_maj"]])
         self.connecteur_db.commit()
 
-    def remove_product(self) -> None:
+    def remove_product(self, product: dict) -> None:
         """
 
         :return:
         """
 
-    def update_product(self) -> None:
+    def update_product(self, product: dict) -> None:
         """
 
         :return:
         """
 
-    def update_price(self) -> None:
+    def update_price(self, product: dict) -> None:
         """
-
+        
+        :param product:
         :return:
         """
 
