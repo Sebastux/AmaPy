@@ -102,7 +102,7 @@ class AmazDB:
             max_key = 1
         else:
             max_key = max_key[0] + 1
-        self.curseur_db.execute(self.__req1, [product["nom produit"], product["note"], product["description"],
+        self.curseur_db.execute(self.__req1, [product["nom_produit"], product["note"], product["description"],
                                               product["evaluation"], product["status_produit"],
                                               product["date_creation"], product["url"]])
 
