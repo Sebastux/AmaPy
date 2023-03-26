@@ -55,8 +55,8 @@ class AmazonDatas:
              "Note": [self.note], "Évaluation": [self.evaluation],
              "Prix": [self.prix], "Monnaie": [self.monnaie],
              "Status du produit": [self.status_produit],
-             "date creation": [self.date_creation],
-             "date maj": [self.date_maj]}
+             "Date de création": [self.date_creation],
+             "Date de maj": [self.date_maj]}
 
         df = pd.DataFrame(data=d)
         df.to_excel(chemin_fic, sheet_name="Export amapy", engine='xlsxwriter',
@@ -70,12 +70,12 @@ class AmazonDatas:
             :return: None
         """
         # Création du dictionnaire
-        d = {"URL": self.url, "Nom du produit": self.nom_produit,
-             "Description du produit": self.description,
-             "Note": self.note, "Évaluation": self.evaluation,
-             "Prix": self.prix, "Monnaie": self.monnaie,
-             "date creation": self.date_creation,
-             "date maj": self.date_maj}
+        d = {"url": self.url, "nom_produit": self.nom_produit,
+             "description": self.description,
+             "note": self.note, "evaluation": self.evaluation,
+             "prix": self.prix, "monnaie": self.monnaie,
+             "date_creation": self.date_creation,
+             "date_maj": self.date_maj}
 
         json_data = json.dumps(d)
         with open(chemin_fic, "w", encoding="utf-8") as f:
