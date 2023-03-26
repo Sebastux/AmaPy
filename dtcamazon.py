@@ -12,6 +12,7 @@ class AmazonDatas:
     Dataclass qui permet de gérer les données d'un produit amazon.
     """
     url: Optional[str] = ""
+    url_image: Optional[str] = ""
     nom_produit: Optional[str] = ""
     note: Optional[int] = 0
     description: Optional[str] = ""
@@ -31,7 +32,8 @@ class AmazonDatas:
             :return: None
         """
         # Création du dataframe
-        d = {"URL": [self.url], "Nom du produit": [self.nom_produit],
+        d = {"URL": [self.url], "URL de l'image": self.url_image,
+             "Nom du produit": [self.nom_produit],
              "Description du produit": [self.description],
              "Note": [self.note], "Évaluation": [self.evaluation],
              "Prix": [self.prix], "Monnaie": [self.monnaie],
@@ -50,7 +52,8 @@ class AmazonDatas:
                 :return: None
                 """
         # Création du dataframe
-        d = {"URL": [self.url], "Nom du produit": [self.nom_produit],
+        d = {"URL": [self.url], "URL de l'image": self.url_image,
+             "Nom du produit": [self.nom_produit],
              "Description du produit": [self.description],
              "Note": [self.note], "Évaluation": [self.evaluation],
              "Prix": [self.prix], "Monnaie": [self.monnaie],
@@ -70,7 +73,8 @@ class AmazonDatas:
             :return: None
         """
         # Création du dictionnaire
-        d = {"url": self.url, "nom_produit": self.nom_produit,
+        d = {"url": self.url, "URL_image": self.url_image,
+             "Nom du produit": [self.nom_produit],
              "description": self.description,
              "note": self.note, "evaluation": self.evaluation,
              "prix": self.prix, "monnaie": self.monnaie,
