@@ -144,7 +144,7 @@ class AmaScrapp:
         page = requests.get(url=self.article.url, headers=self.user_agent, timeout=5)
         if page.status_code == 200:
             # soup = BeautifulSoup(page.content, "html.parser", from_encoding="utf-8")
-            soup = BeautifulSoup(page.content, "lxml", from_encoding="utf-8")
+            soup = BeautifulSoup(page.content, "html.parser", from_encoding="utf-8")
             self.get_article_name(soup)
             self.get_article_price(soup)
             self.get_article_note(soup)
