@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "amatable" (
+CREATE TABLE "amatable" (
 	"keyzon"	INTEGER NOT NULL UNIQUE,
 	"nom_produit"	TEXT,
 	"note"	INTEGER,
@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS "amatable" (
 	"evaluation"	INTEGER,
 	"status_produit"	TEXT,
 	"date_creation"	TEXT,
-	"url"	TEXT,
 	PRIMARY KEY("keyzon" AUTOINCREMENT)
 );
 
@@ -17,4 +16,12 @@ CREATE TABLE "tblprix" (
 	"date_maj"	TEXT,
 	FOREIGN KEY("keyzon") REFERENCES "amatable"("keyzon")
 );
+
+CREATE TABLE "tbllink" (
+	"keyzon"	INTEGER NOT NULL,
+	"url"	TEXT,
+	"chemin_image1"	TEXT,
+	FOREIGN KEY("keyzon") REFERENCES "amatable"("keyzon")
+);
+
 PRAGMA foreign_keys = ON;
