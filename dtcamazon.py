@@ -12,7 +12,7 @@ class AmazonDatas:
     Dataclass qui permet de gérer les données d'un produit amazon.
     """
     url: Optional[str] = ""
-    url_image: Optional[str] = ""
+    chemin_image: Optional[str] = ""
     nom_produit: Optional[str] = ""
     note: Optional[int] = 0
     description: Optional[str] = ""
@@ -23,7 +23,6 @@ class AmazonDatas:
     date_creation: Optional[str] = date.today().strftime("%d/%m/%Y")
     date_maj: Optional[str] = date.today().strftime("%d/%m/%Y")
 
-
     def export_datas_to_csv(self, chemin_fic: str) -> None:
         """
             Méthode qui permet de stocker le contenu des variables
@@ -32,7 +31,7 @@ class AmazonDatas:
             :return: None
         """
         # Création du dataframe
-        d = {"URL": [self.url], "URL de l'image": self.url_image,
+        d = {"URL": [self.url], "Chemin de l'image": self.chemin_image,
              "Nom du produit": [self.nom_produit],
              "Description du produit": [self.description],
              "Note": [self.note], "Évaluation": [self.evaluation],
@@ -52,7 +51,7 @@ class AmazonDatas:
                 :return: None
                 """
         # Création du dataframe
-        d = {"URL": [self.url], "URL de l'image": self.url_image,
+        d = {"URL": [self.url], "URL de l'image": self.chemin_image,
              "Nom du produit": [self.nom_produit],
              "Description du produit": [self.description],
              "Note": [self.note], "Évaluation": [self.evaluation],
@@ -73,7 +72,7 @@ class AmazonDatas:
             :return: None
         """
         # Création du dictionnaire
-        d = {"url": self.url, "URL_image": self.url_image,
+        d = {"url": self.url, "URL_image": self.chemin_image,
              "Nom du produit": [self.nom_produit],
              "description": self.description,
              "note": self.note, "evaluation": self.evaluation,
