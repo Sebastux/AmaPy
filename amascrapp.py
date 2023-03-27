@@ -18,7 +18,18 @@ class AmaScrapp:
     """
     def __init__(self):
         self.article = AmazonDatas()
-        self.user_agent = ""
+        self.header = {
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Accept-Language": "fr-FR,fr;q=0.5",
+                "Connection": "keep-alive",
+                "DNT": "1",
+                "Upgrade-Insecure-Requests": "1",
+                "Sec-Fetch-Dest": "document",
+                "Sec-Fetch-Mode": "navigate",
+                "Sec-Fetch-Site": "cross-site",
+                "User-Agent": "",
+                      }
 
     def get_user_agent(self) -> None:
         """
@@ -29,19 +40,12 @@ class AmaScrapp:
         try:
             with open(os.path.join("datas", "user-agents.txt"), "r+t", encoding="utf-8") as f:
                 ligne = f.readlines()
-                useragent = random.choice(ligne)
-                self.user_agent = {"user-agent": useragent.replace("\n", ""),
-                                   "Accept-Language": "fr-FR,fr;q=0.5",
-                                   "Accept-Encoding": "gzip, deflate, br",
-                                   "DNT": "1",
-                                   }
+                user_agent = random.choice(ligne)
+                self.header.update({"User-Agent": user_agent.replace("\n", "")})
         except FileNotFoundError:
-            self.user_agent = {"user-agent":
-                               "Mozilla/5.0 (Linux; U; Android 4.0.3; en-us; KFTT Build/IML74K) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36",
-                               "Accept-Language": "fr-FR,fr;q=0.5",
-                               "Accept-Encoding": "gzip, deflate, br",
-                                "DNT": "1",
-                               }
+            self.header.update({"user-agent":"Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0", })
+        finally:
+            self.header.update({"Referer": self.article.url})
 
     def get_article_name(self, soup: BeautifulSoup) -> None:
         """
