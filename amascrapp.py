@@ -169,7 +169,7 @@ class AmaScrapp:
             "monnaie": self.article.monnaie,
             "date creation": self.article.date_creation,
             "date maj": self.article.date_maj,
-            "Disponnibilité": self.article.status_produit
+            "disponnibilité": self.article.status_produit,
         }
         return dict_article
 
