@@ -127,3 +127,6 @@ dmypy.json
 
 # Répertoire de la DB
 bdd
+
+# Répertoire de stockage des pages web
+TestPages
