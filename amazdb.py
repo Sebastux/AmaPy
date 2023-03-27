@@ -112,8 +112,12 @@ class AmazDB:
     def remove_product(self, product: dict) -> None:
         """
 
+        :param product:
         :return:
         """
+        requete = "delete from amatable where nom_produit = '" + product["nom_produit"] + "';"
+        self.curseur_db.execute(requete)
+        self.connecteur_db.commit()
 
     def update_product(self, product: dict) -> None:
         """
