@@ -2,9 +2,10 @@
    Module permettant l'extraction et le traitement des données extraite des pages Amazon.
 """
 
-import random
 import os
+import random
 from datetime import date
+from PIL import Image
 
 from bs4 import BeautifulSoup
 import requests
@@ -43,7 +44,7 @@ class AmaScrapp:
                 user_agent = random.choice(ligne)
                 self.header.update({"User-Agent": user_agent.replace("\n", "")})
         except FileNotFoundError:
-            self.header.update({"user-agent":"Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0", })
+            self.header.update({"user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0", })
         finally:
             self.header.update({"Referer": self.article.url})
 
@@ -133,6 +134,31 @@ class AmaScrapp:
         if len(self.article.description) == 0:
             self.article.description = "Inconnue"
 
+    def get_image_article(self, soup: BeautifulSoup, chemin_ok: str, chemin_ko: str = None) -> None:
+        """
+        Méthode qui permet la récupération de l'URL de l'image du produit
+        :param chemin_ok: Chemin de l'image en cas de succés du téléchargement.
+        :param chemin_ko: Chemin d'une image par défaut en cas d'échec.
+        :param soup: Objet BeautifullSoup permettant la récupération de l'information
+        :return: None
+        """
+        balise_image = soup.find("div", class_="imgTagWrapper")
+
+        balise_image_str = str(balise_image.contents)
+        debut_url = balise_image_str.find("https")
+        fin_url = balise_image_str.find("jpg") + 3
+        url = balise_image_str[debut_url:fin_url]
+
+        try:
+            # img = Image.open(requests.get(url, timeout=5, headers=self.header, stream=True).raw)
+            # img.save(chemin_ok)
+            self.article.chemin_image = chemin_ok
+        except:
+            if chemin_ko is not None:
+                self.article.chemin_image = chemin_ko
+            else:
+                self.article.chemin_image = ""
+
     def get_article(self, url: str) -> None:
         """
         Méthode qui permet la récupération de l'ensemble des informations du produit
@@ -151,6 +177,7 @@ class AmaScrapp:
             self.get_article_review(soup)
             self.get_article_status(soup)
             self.get_article_description(soup)
+            self.get_article_image(soup, chemin_ok="/home/Sebastien/Dépots/publique/AmaPy/images/toto.jpg", chemin_ko="/home/Sebastien/Dépots/publique/AmaPy/images/no_image.jpg")
             self.article.date_creation = date.today().strftime("%d/%m/%Y")
             self.article.date_maj = date.today().strftime("%d/%m/%Y")
 
@@ -170,6 +197,7 @@ class AmaScrapp:
             "date creation": self.article.date_creation,
             "date maj": self.article.date_maj,
             "disponnibilité": self.article.status_produit,
+            "chemin_image": self.article.chemin_image
         }
         return dict_article
 
