@@ -15,6 +15,8 @@ CREATE TABLE "tblprix" (
 	"monnaie"	TEXT,
 	"date_maj"	TEXT,
 	FOREIGN KEY("keyzon") REFERENCES "amatable"("keyzon")
+ON UPDATE CASCADE
+ON DELETE CASCADE
 );
 
 CREATE TABLE "tbllink" (
@@ -22,6 +24,8 @@ CREATE TABLE "tbllink" (
 	"url"	TEXT,
 	"chemin_image1"	TEXT,
 	FOREIGN KEY("keyzon") REFERENCES "amatable"("keyzon")
+ON UPDATE CASCADE
+ON DELETE CASCADE
 );
 
 PRAGMA foreign_keys = ON;
