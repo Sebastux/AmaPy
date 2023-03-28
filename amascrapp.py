@@ -130,8 +130,11 @@ class AmaScrapp:
         :param soup: Objet BeautifullSoup permettant la récupération de l'information
         :return: None
         """
-        self.article.description = soup.find('div', {'id': "productDescription"}).getText().strip()
-        if len(self.article.description) == 0:
+        try:
+            self.article.description = soup.find('div', {'id': "productDescription"}).getText().strip()
+            if len(self.article.description) == 0:
+                self.article.description = "Inconnue"
+        except AttributeError:
             self.article.description = "Inconnue"
 
     def get_article_image(self, soup: BeautifulSoup, repertoire: str, chemin_ko: str = None) -> None:
@@ -156,11 +159,13 @@ class AmaScrapp:
             self.article.chemin_image = os.path.join(repertoire, nom_image)
             img = Image.open(requests.get(url, timeout=5, headers=self.header, stream=True).raw)
             img.save(self.article.chemin_image)
-        except:
+        except Exception as e:
+            # e.add_note('Add some information')
             if chemin_ko is not None:
                 self.article.chemin_image = chemin_ko
             else:
                 self.article.chemin_image = ""
+            raise
 
     def get_article(self, url: str) -> None:
         """
