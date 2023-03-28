@@ -8,9 +8,10 @@ class AmazDB:
     def __init__(self, chemin_fic: str):
         # Création des requêtes
         self.__req1 = "INSERT INTO amatable (nom_produit, note, description, evaluation, \
-                      status_produit, date_creation, url) VALUES(?, ?, ?, ?, ?, ?, ?);"
+                      status_produit, date_creation) VALUES(?, ?, ?, ?, ?, ?);"
 
         self.__req2 = "INSERT INTO tblprix (keyzon, prix, monnaie, date_maj) VALUES(?, ?, ?, ?);"
+        self.__req3 = "INSERT INTO tbllink (keyzon, url, chemin_image1) VALUES(?, ?, ?);"
 
         # Création des variables d'instance
         self.chemin_fic = chemin_fic
