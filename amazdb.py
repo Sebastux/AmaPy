@@ -3,7 +3,6 @@ Module de gestion de sauvegarde de données dans une DB SQLite.
 """
 import os
 import sqlite3
-from  datetime import date
 from datetime import datetime
 
 import pandas as pd
@@ -37,8 +36,8 @@ class AmazDB:
 
     def create_db_fic(self) -> None:
         """
-
-        :return:
+        Méthode permettant de créer un fichier de base de donnèes.
+        :return: None
         """
         self.connecteur_db = sqlite3.connect(self.chemin_fic)
         self.curseur_db = self.connecteur_db.cursor()
@@ -48,36 +47,37 @@ class AmazDB:
 
     def open_db_fic(self) -> None:
         """
-
-        :return:
+        Méthode permettant d'ouvrir un fichier de base de donnèes.
+        :return: None
         """
         self.connecteur_db = sqlite3.connect(self.chemin_fic)
         self.curseur_db = self.connecteur_db.cursor()
 
     def close_connection(self) -> None:
         """
-
-        :return:
+        Méthode permettant de fenmer un fichier de base de donnèes.
+        :return: None
         """
         self.connecteur_db.commit()
         self.connecteur_db.close()
 
     def drop_db(self) -> None:
         """
-
-        :return:
+        Méthode permettant de supprimer un fichier de base de donnèes.
+        :return: None
         """
         self.connecteur_db.commit()
         self.connecteur_db.close()
         os.remove(self.chemin_fic)
         self.create_db_fic()
 
-    def make_request(self, requete: str, commit: bool = False):
+    def make_request(self, requete: str, commit: bool = False) -> tuple | list:
         """
-
-        :param requete:
-        :param commit:
-        :return:
+        Méthode permettant de faire une requete sur la base de données
+        :param requete: Contenu de la requéte sous forme de chaine de caractères
+        :param commit: Si la requête insère ou supprime des données, permet la validation de cette requête.
+        :return: Retourne le résultat sous forme d'un tuple en cas de résultat
+        sur une ligne et d'une liste de tuple si le resultat est sur plusieurs lignes.
         """
         self.curseur_db.execute(requete)
         row = self.curseur_db.fetchone()
@@ -86,12 +86,13 @@ class AmazDB:
             self.connecteur_db.commit()
         return row
 
-    def make_requests(self, requetes: str, commit: bool = False):
+    def make_requests(self, requetes: str, commit: bool = False) -> tuple | list:
         """
-
-        :param requetes:
-        :param commit:
-        :return:
+        Méthode permettant de faire une requete sur la base de données
+        :param requetes: Contenu des requétes sous forme de chaine de caractères
+        :param commit: Si les requêtes insèrent ou suppriment des données, permet la validation de cette requête.
+        :return: Retourne le résultat sous forme d'un tuple en cas de résultat
+        sur une ligne et d'une liste de tuple si le resultat est sur plusieurs lignes.
         """
         self.curseur_db.executescript(requetes)
         row = self.curseur_db.fetchone()
@@ -102,9 +103,9 @@ class AmazDB:
 
     def add_product(self, product: dict) -> None:
         """
-
-        :param product:
-        :return:
+        Ajoute un nouveau produit dans la BDD.
+        :param product: Informations du produit sous forme de dictionnaire.
+        :return: None
         """
         self.curseur_db.execute("SELECT MAX(keyzon) FROM amatable LIMIT 1;")
         max_key = self.curseur_db.fetchone()
@@ -122,9 +123,9 @@ class AmazDB:
 
     def remove_product(self, product: dict) -> None:
         """
-
-        :param product:
-        :return:
+        Supprime un produit dans la BDD.
+        :param product: Informations du produit sous forme de dictionnaire.
+        :return: None
         """
         requete = "delete from amatable where nom_produit = '" + product["nom_produit"] + "';"
         self.curseur_db.execute(requete)
@@ -168,10 +169,10 @@ class AmazDB:
 
     def export_datas_to_excell(self, chemin_fic: str, product: dict) -> None:
         """
-
-        :param chemin_fic:
-        :param product:
-        :return:
+        Exporte un produit dans un fichier au format xlsx.
+        :param chemin_fic: Chemin du fichier excel avec l'extension xlsx
+        :param product: Informations du produit sous forme de dictionnaire.
+        :return: None
         """
         df = pd.DataFrame(data=product)
         df.to_excel(chemin_fic, sheet_name="Export amapy", engine='xlsxwriter',
@@ -179,22 +180,21 @@ class AmazDB:
 
     def export_datas_to_csv(self, chemin_fic: str, product: dict) -> None:
         """
-
-        :param chemin_fic:
-        :param product:
-        :return:
+        Exporte un produit dans un fichier au format csv.
+        :param chemin_fic: Chemin du fichier excel avec l'extension xlsx
+        :param product: Informations du produit sous forme de dictionnaire.
+        :return: None
         """
         df = pd.DataFrame(data=product)
         df.to_csv(chemin_fic, header=True, float_format="%.2f", index=False, sep=",")
 
     def export_products_to_excell(self, chemin_fic: str, list_product: list) -> None:
         """
-
-        :param chemin_fic:
-        :param list_product:
-        :return:
+        Exporte une liste de produit dans un fichier au format xlsx.
+        :param chemin_fic: Chemin du fichier excel avec l'extension xlsx
+        :param list_product: Informations des produits sous forme d'une liste de dictionnaire.
+        :return: None
         """
-
         if len(list_product) == 1:
             self.export_datas_to_excell(chemin_fic, list_product[0])
         elif len(list_product) > 1:
@@ -207,12 +207,11 @@ class AmazDB:
 
     def export_products_to_csv(self, chemin_fic: str, list_product: list) -> None:
         """
-
-        :param chemin_fic:
-        :param list_product:
-        :return:
+        Exporte une liste de produit dans un fichier au format csv.
+        :param chemin_fic: Chemin du fichier excel avec l'extension xlsx
+        :param list_product: Informations des produits sous forme d'une liste de dictionnaire.
+        :return: None
         """
-
         if len(list_product) == 1:
             self.export_datas_to_csv(chemin_fic, list_product[0])
         elif len(list_product) > 1:
