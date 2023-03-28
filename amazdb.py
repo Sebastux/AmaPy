@@ -1,3 +1,6 @@
+"""
+Module de gestion de sauvegarde de données dans une DB SQLite.
+"""
 import sqlite3
 import os
 
@@ -5,6 +8,8 @@ import pandas as pd
 
 
 class AmazDB:
+    """
+    Classe permettant la sauvegarde des produits dans une DB SQLite.
     def __init__(self, chemin_fic: str):
         # Création des requêtes
         self.__req1 = "INSERT INTO amatable (nom_produit, note, description, evaluation, \
