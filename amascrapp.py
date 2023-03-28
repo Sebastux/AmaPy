@@ -134,10 +134,10 @@ class AmaScrapp:
         if len(self.article.description) == 0:
             self.article.description = "Inconnue"
 
-    def get_image_article(self, soup: BeautifulSoup, chemin_ok: str, chemin_ko: str = None) -> None:
+    def get_article_image(self, soup: BeautifulSoup, repertoire: str, chemin_ko: str = None) -> None:
         """
         Méthode qui permet la récupération de l'URL de l'image du produit
-        :param chemin_ok: Chemin de l'image en cas de succés du téléchargement.
+        :param repertoire: Chemin du répertoire de sauvearde des images..
         :param chemin_ko: Chemin d'une image par défaut en cas d'échec.
         :param soup: Objet BeautifullSoup permettant la récupération de l'information
         :return: None
@@ -149,10 +149,13 @@ class AmaScrapp:
         fin_url = balise_image_str.find("jpg") + 3
         url = balise_image_str[debut_url:fin_url]
 
+        extension = os.path.splitext(url)[1]
+        nom_image = self.article.nom_produit.replace(" ", "").lower()[:15] + extension
+
         try:
-            # img = Image.open(requests.get(url, timeout=5, headers=self.header, stream=True).raw)
-            # img.save(chemin_ok)
-            self.article.chemin_image = chemin_ok
+            self.article.chemin_image = os.path.join(repertoire, nom_image)
+            img = Image.open(requests.get(url, timeout=5, headers=self.header, stream=True).raw)
+            img.save(self.article.chemin_image)
         except:
             if chemin_ko is not None:
                 self.article.chemin_image = chemin_ko
@@ -167,7 +170,7 @@ class AmaScrapp:
         """
         self.article.url = url
         self.get_user_agent()
-        page = requests.get(url=self.article.url, headers=self.user_agent, timeout=5)
+        page = requests.get(url=self.article.url, headers=self.header, timeout=5)
         if page.status_code == 200:
             # soup = BeautifulSoup(page.content, "html.parser", from_encoding="utf-8")
             soup = BeautifulSoup(page.content, "html.parser", from_encoding="utf-8")
@@ -177,7 +180,7 @@ class AmaScrapp:
             self.get_article_review(soup)
             self.get_article_status(soup)
             self.get_article_description(soup)
-            self.get_article_image(soup, chemin_ok="/home/Sebastien/Dépots/publique/AmaPy/images/toto.jpg", chemin_ko="/home/Sebastien/Dépots/publique/AmaPy/images/no_image.jpg")
+            self.get_article_image(soup, repertoire="/home/Sebastien/Dépots/publique/AmaPy/images/", chemin_ko="/home/Sebastien/Dépots/publique/AmaPy/images/no_image.jpg")
             self.article.date_creation = date.today().strftime("%d/%m/%Y")
             self.article.date_maj = date.today().strftime("%d/%m/%Y")
 
@@ -194,10 +197,11 @@ class AmaScrapp:
             "evaluation": self.article.evaluation,
             "prix": self.article.prix,
             "monnaie": self.article.monnaie,
-            "date creation": self.article.date_creation,
-            "date maj": self.article.date_maj,
+            "date_creation": self.article.date_creation,
+            "date_maj": self.article.date_maj,
             "disponnibilité": self.article.status_produit,
-            "chemin_image": self.article.chemin_image
+            "chemin_image": self.article.chemin_image,
+            "status_produit": self.article.status_produit
         }
         return dict_article
 
