@@ -130,3 +130,5 @@ bdd
 
 # Répertoire de stockage des pages web
 TestPages
+
+*.jpg
