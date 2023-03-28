@@ -51,7 +51,7 @@ class AmazonDatas:
                 :return: None
                 """
         # Création du dataframe
-        d = {"URL": [self.url], "URL de l'image": self.chemin_image,
+        d = {"URL": [self.url], "Chemin de l'image": self.chemin_image,
              "Nom du produit": [self.nom_produit],
              "Description du produit": [self.description],
              "Note": [self.note], "Évaluation": [self.evaluation],
@@ -72,7 +72,7 @@ class AmazonDatas:
             :return: None
         """
         # Création du dictionnaire
-        d = {"url": self.url, "URL_image": self.chemin_image,
+        d = {"url": self.url, "chemin_image": self.chemin_image,
              "Nom du produit": [self.nom_produit],
              "description": self.description,
              "note": self.note, "evaluation": self.evaluation,
