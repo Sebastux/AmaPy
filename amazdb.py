@@ -10,6 +10,7 @@ import pandas as pd
 class AmazDB:
     """
     Classe permettant la sauvegarde des produits dans une DB SQLite.
+    """
     def __init__(self, chemin_fic: str):
         # Création des requêtes
         self.__req1 = "INSERT INTO amatable (nom_produit, note, description, evaluation, \
@@ -110,9 +111,10 @@ class AmazDB:
             max_key = max_key[0] + 1
         self.curseur_db.execute(self.__req1, [product["nom_produit"], product["note"], product["description"],
                                               product["evaluation"], product["status_produit"],
-                                              product["date_creation"], product["url"]])
+                                              product["date_creation"]])
 
         self.curseur_db.execute(self.__req2, [max_key, product["prix"], product["monnaie"], product["date_maj"]])
+        self.curseur_db.execute(self.__req3, [max_key, product["url"], product["chemin_image"]])
         self.connecteur_db.commit()
 
     def remove_product(self, product: dict) -> None:
