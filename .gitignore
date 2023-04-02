@@ -132,3 +132,6 @@ bdd
 TestPages
 
 *.jpg
+*.png
+*.xlsx
+*.csv
