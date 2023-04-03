@@ -147,20 +147,24 @@ class AmaScrapp:
         """
         balise_image = soup.find("div", class_="imgTagWrapper")
 
-        balise_image_str = str(balise_image.contents)
-        debut_url = balise_image_str.find("https")
-        fin_url = balise_image_str.find("jpg") + 3
-        url = balise_image_str[debut_url:fin_url]
-
-        extension = os.path.splitext(url)[1]
-        nom_image = self.article.nom_produit.replace(" ", "").lower()[:15] + extension
-
         try:
+            balise_image_str = str(balise_image.contents)
+            debut_url = balise_image_str.find("https")
+            fin_url = balise_image_str.find("jpg") + 3
+            url = balise_image_str[debut_url:fin_url]
+
+            extension = os.path.splitext(url)[1]
+            nom_image = self.article.nom_produit.replace(" ", "").lower()[:15] + extension
             self.article.chemin_image = os.path.join(repertoire, nom_image)
             img = Image.open(requests.get(url, timeout=5, headers=self.header, stream=True).raw)
             img.save(self.article.chemin_image)
+        except AttributeError:
+            if chemin_ko is not None:
+                self.article.chemin_image = chemin_ko
+            else:
+                self.article.chemin_image = ""
+            raise
         except Exception as e:
-            # e.add_note('Add some information')
             if chemin_ko is not None:
                 self.article.chemin_image = chemin_ko
             else:
