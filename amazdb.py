@@ -71,13 +71,12 @@ class AmazDB:
         os.remove(self.chemin_fic)
         self.create_db_fic()
 
-    def make_request(self, requete: str, commit: bool = False) -> tuple | list:
+    def make_request(self, requete: str, commit: bool = False) -> list:
         """
         Méthode permettant de faire une requete sur la base de données
         :param requete: Contenu de la requéte sous forme de chaine de caractères
         :param commit: Si la requête insère ou supprime des données, permet la validation de cette requête.
-        :return: Retourne le résultat sous forme d'un tuple en cas de résultat
-        sur une ligne et d'une liste de tuple si le resultat est sur plusieurs lignes.
+        :return: Retourne le résultat sous forme d'une liste de tuple.
         """
         self.curseur_db.execute(requete)
         row = self.curseur_db.fetchone()
@@ -86,13 +85,12 @@ class AmazDB:
             self.connecteur_db.commit()
         return row
 
-    def make_requests(self, requetes: str, commit: bool = False) -> tuple | list:
+    def make_requests(self, requetes: str, commit: bool = False) -> list:
         """
         Méthode permettant de faire une requete sur la base de données
         :param requetes: Contenu des requétes sous forme de chaine de caractères
         :param commit: Si les requêtes insèrent ou suppriment des données, permet la validation de cette requête.
-        :return: Retourne le résultat sous forme d'un tuple en cas de résultat
-        sur une ligne et d'une liste de tuple si le resultat est sur plusieurs lignes.
+        :return: Retourne le résultat sous forme d'une liste de tuple.
         """
         self.curseur_db.executescript(requetes)
         row = self.curseur_db.fetchone()
