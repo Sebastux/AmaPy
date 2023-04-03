@@ -79,7 +79,7 @@ class AmazDB:
         :return: Retourne le résultat sous forme d'une liste de tuple.
         """
         self.curseur_db.execute(requete)
-        row = self.curseur_db.fetchone()
+        row = self.curseur_db.fetchall()
 
         if commit is True:
             self.connecteur_db.commit()
@@ -93,11 +93,11 @@ class AmazDB:
         :return: Retourne le résultat sous forme d'une liste de tuple.
         """
         self.curseur_db.executescript(requetes)
-        row = self.curseur_db.fetchone()
+        lignes = self.curseur_db.fetchall()
 
         if commit is True:
             self.connecteur_db.commit()
-        return row
+        return lignes
 
     def add_product(self, product: dict) -> None:
         """
