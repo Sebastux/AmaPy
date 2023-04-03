@@ -1,6 +1,7 @@
 import os
 import shutil
 from datetime import date
+from datetime import datetime
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -34,8 +35,15 @@ produit = {'status_produit': 'Cet article paraîtra le 19 juillet 2023.',
            'chemin_image': ""}
 
 BDD = AmazDB("/home/Sebastien/Dépots/publique/AmaPy/bdd/toto.db")
+"""
+requete = "SELECT * FROM amatable WHERE keyzon = 1"
+for i in range(2, 16):
+    requete += f" or keyzon = {i}"
+requete += ";"
+"""
 
-product = BDD.make_request("SELECT * FROM amatable WHERE keyzon = 1 or keyzon = 2 or keyzon = 3 or keyzon = 4 or keyzon = 5 or keyzon = 6 or keyzon = 7 or keyzon = 8 or keyzon = 9 or keyzon = 10 or keyzon = 11 or keyzon = 12 or keyzon = 13 or keyzon = 14 or keyzon = 15;")
+requete = "SELECT * FROM amatable WHERE keyzon = 12;"
+product = BDD.make_request(requete)
 
 chemin_export = "/home/Sebastien/Dépots/publique/AmaPy/export"
 nom_fic = ""
@@ -47,19 +55,20 @@ liste_prix = []
 
 for j in range(len(product)):
     product_dict = {"Nom du produit": [product[j][1]],
-                    "Description du produit": [product[j][3]],
                     "Note": [product[j][2]],
                     "Évaluation": [product[j][4]],
                     "Status du produit": [product[j][5]],
-                    "Date de création": [product[j][6]]}
-
+                    "Date de création": [datetime.strptime(product[j][6], "%d/%m/%Y").date()],
+                    "Description du produit": [product[j][3]]}
+# product[j][6]
+# datetime.strptime(product[j][6], "%d/%m/%Y").date()
     prix_bdd = BDD.make_request(f"SELECT prix, monnaie, date_maj, chemin_image1 FROM tblprix INNER JOIN tbllink ON tblprix.keyzon = tbllink.keyzon WHERE tblprix.keyzon = {product[j][0]} ORDER by date_maj;")
 
     df1 = pd.DataFrame(product_dict)
 
-    prix_dict = {"Prix": [prix_bdd[0][0]],
-                 "Monnaie": [prix_bdd[0][1]],
-                 "Date de mise à jour": [prix_bdd[0][2]]}
+    prix_dict = {"Date de mise à jour": [datetime.strptime(prix_bdd[0][2], "%d/%m/%Y").date()],
+                 "Prix": [prix_bdd[0][0]],
+                 "Monnaie": [prix_bdd[0][1]]}
 
     liste_date.append(prix_bdd[0][2][0:5])
     liste_prix.append(prix_bdd[0][0])
@@ -70,7 +79,7 @@ for j in range(len(product)):
         for i in range(1, len(prix_bdd)):
             prix_dict = {"Prix": prix_bdd[i][0],
                          "Monnaie": prix_bdd[i][1],
-                         "Date de mise à jour": prix_bdd[i][2]}
+                         "Date de mise à jour": datetime.strptime(prix_bdd[i][2], "%d/%m/%Y").date()}
 
             df2.loc[i] = prix_dict
             liste_date.append(prix_bdd[i][2][0:5])
@@ -105,6 +114,6 @@ for j in range(len(product)):
     except FileNotFoundError:
         pass
 
-    with pd.ExcelWriter(nom_fic, date_format="DD-MM-YYYY") as writer:
+    with pd.ExcelWriter(nom_fic, date_format="DD/MM/YYYY") as writer:
         df1.to_excel(writer, sheet_name="Produit", engine='xlsxwriter', header=True, float_format="%.2f", index=False)
         df2.to_excel(writer, sheet_name="historique Prix", engine='xlsxwriter', header=True, float_format="%.2f", index=False)
