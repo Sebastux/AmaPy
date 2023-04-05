@@ -3,4 +3,5 @@ requests
 beautifulsoup4
 XlsxWriter
 PyQt6
+pyqt6-tools
 matplotlib
