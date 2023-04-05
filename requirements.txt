@@ -1,7 +1,4 @@
-pandas
+pandas[excel, html, xml, plot]
 requests
-beautifulsoup4
-XlsxWriter
 PyQt6
 pyqt6-tools
-matplotlib
