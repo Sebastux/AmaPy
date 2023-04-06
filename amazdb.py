@@ -266,6 +266,7 @@ class AmazDB:
                              index=False)
                 df2.to_excel(writer, sheet_name="historique Prix", engine='xlsxwriter', header=True,
                              float_format="%.2f", index=False)
+        return True
 
     def export_datas_to_csv(self, chemin_fic: str, product: dict) -> None:
         """
