@@ -133,5 +133,10 @@ TestPages
 
 *.jpg
 *.png
+*.ico
 *.xlsx
 *.csv
+
+# Autorisation de fichiers dans certain répertoire
+!Icones/*.png
+!Icones/*.ico
