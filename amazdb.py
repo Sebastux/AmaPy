@@ -4,7 +4,7 @@ Module de gestion de sauvegarde de données dans une DB SQLite.
 import os
 import sqlite3
 from datetime import datetime
-
+from typing import Dict, List, Tuple
 import pandas as pd
 
 
@@ -268,7 +268,7 @@ class AmazDB:
                              float_format="%.2f", index=False)
         return True
 
-    def export_datas_to_csv(self, chemin_fic: str, product: dict) -> None:
+    def export_datas_to_csv(self, chemin_exp: str, product_list: List) -> bool:
         """
         Exporte un produit dans un fichier au format csv.
         :param chemin_fic: Chemin du fichier excel avec l'extension xlsx
