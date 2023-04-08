@@ -2,3 +2,6 @@ pandas[excel, html, xml, plot]
 requests
 PyQt6
 pyqt6-tools
+matplotlib
+Pillow
+beautifulsoup4
