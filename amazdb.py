@@ -71,7 +71,7 @@ class AmazDB:
         os.remove(self.chemin_fic)
         self.create_db_fic()
 
-    def make_request(self, requete: str, commit: bool = False) -> list:
+    def make_request(self, requete: str, commit: bool = False) -> List[Tuple]:
         """
         Méthode permettant de faire une requete sur la base de données
         :param requete: Contenu de la requéte sous forme de chaine de caractères
@@ -85,7 +85,7 @@ class AmazDB:
             self.connecteur_db.commit()
         return row
 
-    def make_requests(self, requetes: str, commit: bool = False) -> list:
+    def make_requests(self, requetes: str, commit: bool = False) -> List[Tuple]:
         """
         Méthode permettant de faire une requete sur la base de données
         :param requetes: Contenu des requétes sous forme de chaine de caractères
@@ -99,7 +99,7 @@ class AmazDB:
             self.connecteur_db.commit()
         return lignes
 
-    def add_product(self, product: dict) -> None:
+    def add_product(self, product: Dict) -> None:
         """
         Ajoute un nouveau produit dans la BDD.
         :param product: Informations du produit sous forme de dictionnaire.
@@ -119,7 +119,7 @@ class AmazDB:
         self.curseur_db.execute(self.__req3, [max_key, product["url"], product["chemin_image"]])
         self.connecteur_db.commit()
 
-    def remove_product(self, product: dict) -> None:
+    def remove_product(self, product: Dict) -> None:
         """
         Supprime un produit dans la BDD.
         :param product: Informations du produit sous forme de dictionnaire.
@@ -129,11 +129,11 @@ class AmazDB:
         self.curseur_db.execute(requete)
         self.connecteur_db.commit()
 
-    def update_product(self, product: dict) -> bool:
+    def update_product(self, product: Dict) -> bool:
         """
         Méthode permettant la mise à jour d'un produit suite à une nouvelle recherche
         :param product: Dictionnaire contenant la liste des informations à mettre à jour
-        :return: True si la MAj est faite et False dans le cas contraire
+        :return: True si la MAJ est faite et False dans le cas contraire
         """
         # Déclarations de variables
         retour = False
@@ -165,14 +165,14 @@ class AmazDB:
         # Emvoi du résultat
         return retour
 
-    def export_datas_to_excell(self, chemin_exp: str, product_list: list) -> bool:
+    def export_datas_to_excell(self, chemin_exp: str, product_list: List) -> bool:
         """
         Exporte un produit dans un fichier au format xlsx. La méthode crée un
         sous répertoire contenant un fichier Excel, une image du produit et
         un graphique de l'évolution des prix.
-        :param chemin_exp: Chemin du répertoire ou seront copier les exports de fichiers
+        :param chemin_exp: Chemin du répertoire où seront copier les exports de fichiers
         :param product_list: Listes de noms de produit à exporter.
-        :return:True si l'export c'est bien passé et False dans le cas contraire.
+        :return:True si l'export s'est bien passé et False dans le cas contraire.
         """
         # Déclaration de variables
         requete = ""

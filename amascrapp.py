@@ -6,6 +6,7 @@ import os
 import random
 from datetime import date
 from PIL import Image
+from typing import Dict
 
 from bs4 import BeautifulSoup
 import requests
@@ -193,7 +194,7 @@ class AmaScrapp:
             self.article.date_creation = date.today().strftime("%d/%m/%Y")
             self.article.date_maj = date.today().strftime("%d/%m/%Y")
 
-    def export_to_dict(self) -> dict:
+    def export_to_dict(self) -> Dict:
         """
         Méthode permettant l'exportation des données produit seus formede dictionnaire.
         :return: Dictionnaire contenant les informations produit
