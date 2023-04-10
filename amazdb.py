@@ -230,7 +230,7 @@ class AmazDB:
             chemin_image_bdd = prix_bdd[0][3]
             if len(prix_bdd) > 1:
                 for i in range(1, len(prix_bdd)):
-                    prix_dict = {"Prix": prix_bdd[i][0],
+                    prix_dict = {"Prix": float(prix_bdd[i][0]),
                                  "Monnaie": prix_bdd[i][1],
                                  "Date de mise à jour": datetime.strptime(prix_bdd[i][2], "%d/%m/%Y").date()}
 
@@ -269,7 +269,6 @@ class AmazDB:
                 pass
 
             # Configusation du type des colones du DataFrame  "Date de création": "datetime64[ns]",
-            pd.set_eng_float_format(accuracy=2)
             df1 = df1.astype({'Note': 'float16', "Évaluation": "int",
                               "Nom du produit": "string", "Status du produit": "string", "Description du produit": "string"})
             df2 = df2.astype({"Prix": "float", "Monnaie": "string"})
