@@ -2,11 +2,14 @@
 """
 Module de gestion de sauvegarde de données dans une DB SQLite.
 """
+import copy
 import os
 import sqlite3
+import shutil
 from datetime import datetime
 from typing import Dict, List, Tuple
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 class AmazDB:
@@ -151,7 +154,7 @@ class AmazDB:
         resultat_recherche1 = self.curseur_db.fetchone()
         cle_primaire = resultat_recherche1[0]
 
-        # Récupération de la date  de dernière MAJ
+        # Récupération de la date de dernière MAJ
         self.curseur_db.execute(recherche2)
         resultat_recherche2 = self.curseur_db.fetchall()
         date_maj_db = datetime.strptime(resultat_recherche2[len(resultat_recherche2) - 1][2], "%d/%m/%Y")
@@ -271,43 +274,80 @@ class AmazDB:
 
     def export_datas_to_csv(self, chemin_exp: str, product_list: List) -> bool:
         """
-        Exporte un produit dans un fichier au format csv.
-        :param chemin_fic: Chemin du fichier excel avec l'extension xlsx
-        :param product: Informations du produit sous forme de dictionnaire.
-        :return: None
+        Export des données au format CSV. L'intégralité des données seront exportée et seul le dernier prix en date sera
+        fournie.
+        :param chemin_exp: Chemin du répertoire où seront copier les exports de fichiers
+        :param product_list: Listes de noms de produit à exporter.
+        :return:True si l'export s'est bien passé et False dans le cas contraire.
         """
-        df = pd.DataFrame(data=product)
-        df.to_csv(chemin_fic, header=True, float_format="%.2f", index=False, sep=",")
+        # Déclaration de variables
+        requete = ""
+        chemin_export = chemin_exp
+        nom_fic = "export_amapy.csv"
+        # product = ""
+        # nom_fic_export = ""
+        # rep_export = ""
+        liste_date = []
+        df: pd.DataFrame = pd.DataFrame()
 
-    def export_products_to_excell(self, chemin_fic: str, list_product: list) -> None:
-        """
-        Exporte une liste de produit dans un fichier au format xlsx.
-        :param chemin_fic: Chemin du fichier excel avec l'extension xlsx
-        :param list_product: Informations des produits sous forme d'une liste de dictionnaire.
-        :return: None
-        """
-        if len(list_product) == 1:
-            self.export_datas_to_excell(chemin_fic, list_product[0])
-        elif len(list_product) > 1:
-            df = pd.DataFrame(list_product[0], index=[0])
-            for i in range(1, len(list_product)):
-                df.loc[i] = list_product[i]
+        # Vérification de l'exstance du répertoire de sortie
+        if not os.path.isdir(chemin_export):
+            return False
 
-            df.to_excel(chemin_fic, sheet_name="Export amapy", engine='xlsxwriter',
-                        header=True, float_format="%.2f", index=False)
+        # Test de la taille de la liste et création de la requête
+        if len(product_list) == 0:
+            return False
 
-    def export_products_to_csv(self, chemin_fic: str, list_product: list) -> None:
-        """
-        Exporte une liste de produit dans un fichier au format csv.
-        :param chemin_fic: Chemin du fichier excel avec l'extension xlsx
-        :param list_product: Informations des produits sous forme d'une liste de dictionnaire.
-        :return: None
-        """
-        if len(list_product) == 1:
-            self.export_datas_to_csv(chemin_fic, list_product[0])
-        elif len(list_product) > 1:
-            df = pd.DataFrame(list_product[0], index=[0])
-            for i in range(1, len(list_product)):
-                df.loc[i] = list_product[i]
+        if len(product_list) == 1:
+            requete = f"SELECT * FROM amatable WHERE nom_produit = '{product_list[0]}';"
+        elif len(product_list) > 1:
+            requete = f"SELECT * FROM amatable WHERE nom_produit = '{product_list[0]}'"
+            for i in range(1, len(product_list)):
+                requete += f" OR nom_produit = '{product_list[i]}'"
+            requete += " ORDER by keyzon;"
 
-            df.to_csv(chemin_fic, header=True, float_format="%.2f", index=False, sep=",")
+        # Exécution de la requête et récupération des données
+        product = self.make_request(requete)
+        for i in range(len(product)):
+            product_dict = {"Nom du produit": product[i][1],
+                            "Note":  product[i][2],
+                            "Évaluation": product[i][4],
+                            "Status du produit": product[i][5],
+                            "Date de création": product[i][6]}
+
+        # "Date de création": datetime.strptime(product[i][6], "%d/%m/%Y").date()}
+        # Récupération du dernier prix en date
+            requete_prix = f"SELECT date_maj, prix, monnaie FROM tblprix WHERE keyzon = '{product[i][0]}';"
+            prix_bdd = self.make_request(requete_prix)
+            if len(prix_bdd) == 0:
+                print("ERREUR de requete")
+                print(f"Résultat : {prix_bdd}")
+            for j in range(len(prix_bdd)):
+                liste_date.append(datetime.strptime(prix_bdd[j][0], "%d/%m/%Y").date())
+
+            date_str = datetime.strftime(sorted(liste_date)[0], '%d/%m/%Y')
+            requete_prix = f"SELECT date_maj, prix, monnaie FROM tblprix WHERE keyzon = {product[i][0]} AND date_maj = '{date_str}';"
+            prix_bdd = self.make_request(requete_prix)
+            # product_dict.update({"Date de mise à jour": datetime.strptime(prix_bdd[0][0], "%d/%m/%Y").date()})
+            product_dict.update({"Date de mise à jour": prix_bdd[0][0]})
+            product_dict.update({"Prix du produit": prix_bdd[0][1]})
+            product_dict.update({"Monnaie": prix_bdd[0][2]})
+            product_dict.update({"Description du produit": product[i][3]})
+
+        # Création du dataframe
+            if i == 0:
+                df = pd.DataFrame([product_dict])
+                # df.style.format(precision=2, decimal=",")
+            else:
+                # df.loc[i] = copy.deepcopy(product_dict)
+                df.loc[i] = product_dict
+
+        # Réinitialisation de la liste
+            liste_date.clear()
+
+        # Création du fichier csv
+        df = df.astype({"Prix du produit": 'float', 'Note': 'float', "Évaluation": "int", "Date de mise à jour": "datetime64[ns]", "Date de création": "datetime64[ns]"})
+        print(df.dtypes)
+        df.to_csv(os.path.join(chemin_export, nom_fic), header=True, index=False, sep=",", date_format="%d/%m/%Y",
+                  mode="w", encoding="utf-8", decimal=",", float_format="%.2f")
+        return True
