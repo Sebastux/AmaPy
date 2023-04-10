@@ -351,3 +351,33 @@ class AmazDB:
         df.to_csv(os.path.join(chemin_export, nom_fic), header=True, index=False, sep=",", date_format="%d/%m/%Y",
                   mode="w", encoding="utf-8", decimal=",", float_format="%.2f")
         return True
+
+    def export_datas_to_json(self, chemin_exp: str, product_list: List) -> bool:
+        """
+        Export des données au format CSV. L'intégralité des données seront exportée et seul le dernier prix en date sera
+        fournie.
+        :param chemin_exp: Chemin du répertoire où seront copier les exports de fichiers
+        :param product_list: Listes de noms de produit à exporter.
+        :return:True si l'export s'est bien passé et False dans le cas contraire.
+        """
+        # Déclaration de variables
+        requete = ""
+
+        # Vérification de l'exstance du répertoire de sortie
+        if not os.path.isdir(chemin_exp):
+            return False
+
+        # Test de la taille de la liste et création de la requête
+        if len(product_list) == 0:
+            return False
+
+        if len(product_list) == 1:
+            requete = f"SELECT * FROM amatable WHERE nom_produit = '{product_list[0]}';"
+        elif len(product_list) > 1:
+            requete = f"SELECT * FROM amatable WHERE nom_produit = '{product_list[0]}'"
+            for i in range(1, len(product_list)):
+                requete += f" OR nom_produit = '{product_list[i]}'"
+            requete += " ORDER by keyzon;"
+
+        # Exécution de la requête et récupération des données
+        product = self.make_request(requete)
