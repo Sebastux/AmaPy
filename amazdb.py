@@ -292,9 +292,6 @@ class AmazDB:
         requete = ""
         chemin_export = chemin_exp
         nom_fic = "export_amapy.csv"
-        # product = ""
-        # nom_fic_export = ""
-        # rep_export = ""
         liste_date = []
         df: pd.DataFrame = pd.DataFrame()
 
@@ -327,9 +324,6 @@ class AmazDB:
         # Récupération du dernier prix en date
             requete_prix = f"SELECT date_maj, prix, monnaie FROM tblprix WHERE keyzon = '{product[i][0]}';"
             prix_bdd = self.make_request(requete_prix)
-            if len(prix_bdd) == 0:
-                print("ERREUR de requete")
-                print(f"Résultat : {prix_bdd}")
             for j in range(len(prix_bdd)):
                 liste_date.append(datetime.strptime(prix_bdd[j][0], "%d/%m/%Y").date())
 
