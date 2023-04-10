@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
    Module permettant l'extraction et le traitement des données extraite des pages Amazon.
 """

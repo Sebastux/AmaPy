@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Module de gestion de sauvegarde de données dans une DB SQLite.
 """

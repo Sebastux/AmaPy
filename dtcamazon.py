@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+    Dataclass qui permet de gérer les données d'un produit amazon.
+"""
+
 from typing import Optional
 from dataclasses import dataclass
 from datetime import date
