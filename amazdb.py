@@ -347,7 +347,6 @@ class AmazDB:
 
         # Création du fichier csv
         df = df.astype({"Prix du produit": 'float', 'Note': 'float', "Évaluation": "int", "Date de mise à jour": "datetime64[ns]", "Date de création": "datetime64[ns]"})
-        print(df.dtypes)
         df.to_csv(os.path.join(chemin_export, nom_fic), header=True, index=False, sep=",", date_format="%d/%m/%Y",
                   mode="w", encoding="utf-8", decimal=",", float_format="%.2f")
         return True
