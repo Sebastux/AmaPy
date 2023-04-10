@@ -199,38 +199,40 @@ class AmazDB:
             requete = f"SELECT * FROM amatable WHERE nom_produit = '{product_list[0]}';"
         elif len(product_list) > 1:
             requete = f"SELECT * FROM amatable WHERE nom_produit = '{product_list[0]}'"
-            for i in range(1, len(product)):
-                requete += " and nom_produit = '{product[i]}'"
+            for i in range(1, len(product_list)):
+                requete += f" OR nom_produit = '{product_list[i]}'"
             requete += " ORDER by keyzon;"
 
         # Exécution de la requête
         product = self.make_request(requete)
         for j in range(len(product)):
-            product_dict = {"Nom du produit": [product[j][1]],
-                            "Note": [product[j][2]],
-                            "Évaluation": [product[j][4]],
-                            "Status du produit": [product[j][5]],
-                            "Date de création": [datetime.strptime(product[j][6], "%d/%m/%Y").date()],
-                            "Description du produit": [product[j][3]]}
+            product_dict = {"Nom du produit": product[j][1],
+                            "Note": product[j][2],
+                            "Évaluation": product[j][4],
+                            "Status du produit": product[j][5],
+                            "Date de création": product[j][6],
+                            "Description du produit": product[j][3]}
+            # "Date de création": datetime.strptime(product[j][6], "%d/%m/%Y").date(),
             requete = f"SELECT prix, monnaie, date_maj, chemin_image1 FROM tblprix INNER JOIN tbllink ON tblprix.keyzon = tbllink.keyzon WHERE tblprix.keyzon = {product[j][0]} ORDER by date_maj;"
             prix_bdd = self.make_request(requete)
 
-            df1 = pd.DataFrame(product_dict)
+            df1 = pd.DataFrame([product_dict])
 
-            prix_dict = {"Date de mise à jour": [datetime.strptime(prix_bdd[0][2], "%d/%m/%Y").date()],
-                         "Prix": [prix_bdd[0][0]],
-                         "Monnaie": [prix_bdd[0][1]]}
+            # "Date de mise à jour": [datetime.strptime(prix_bdd[0][2], "%d/%m/%Y").date()],
+            prix_dict = {"Date de mise à jour": prix_bdd[0][2],
+                         "Prix": prix_bdd[0][0],
+                         "Monnaie": prix_bdd[0][1]}
 
             liste_date.append(prix_bdd[0][2][0:5])
             liste_prix.append(prix_bdd[0][0])
 
-            df2 = pd.DataFrame(prix_dict)
+            df2 = pd.DataFrame([prix_dict])
             chemin_image_bdd = prix_bdd[0][3]
             if len(prix_bdd) > 1:
                 for i in range(1, len(prix_bdd)):
                     prix_dict = {"Prix": prix_bdd[i][0],
                                  "Monnaie": prix_bdd[i][1],
-                                 "Date de mise à jour": datetime.strptime(prix_bdd[i][2], "%d/%m/%Y").date()}
+                                 "Date de mise à jour": prix_bdd[i][2]}
 
                     df2.loc[i] = prix_dict
                     liste_date.append(prix_bdd[i][2][0:5])
@@ -248,6 +250,7 @@ class AmazDB:
                 shutil.rmtree(rep_export, ignore_errors=True)
                 os.mkdir(rep_export)
 
+            # Création du graphique
             plt.figure(figsize=(40, 5))
             plt.title("Évolution du prix")
             plt.xlabel('Date', fontsize=14, color='red')
@@ -265,11 +268,16 @@ class AmazDB:
             except FileNotFoundError:
                 pass
 
-            with pd.ExcelWriter(nom_fic, date_format="DD/MM/YYYY") as writer:
-                df1.to_excel(writer, sheet_name="Produit", engine='xlsxwriter', header=True, float_format="%.2f",
-                             index=False)
-                df2.to_excel(writer, sheet_name="historique Prix", engine='xlsxwriter', header=True,
-                             float_format="%.2f", index=False)
+            # Configusation du type des colones du DataFrame  "Date de création": "datetime64[ns]",
+            pd.set_eng_float_format(accuracy=2)
+            df1 = df1.astype({'Note': 'float16', "Évaluation": "int",
+                              "Nom du produit": "string", "Status du produit": "string", "Description du produit": "string"})
+            df2 = df2.astype({"Prix": "float", "Monnaie": "string"})
+
+            # Écriture du fichier
+            with pd.ExcelWriter(nom_fic, mode="w") as writer:
+                df1.to_excel(writer, sheet_name="Produit", engine='xlsxwriter', header=True, float_format="%.2f", index=False)
+                df2.to_excel(writer, sheet_name="historique Prix", engine='xlsxwriter', header=True, float_format="%.2f", index=False)
         return True
 
     def export_datas_to_csv(self, chemin_exp: str, product_list: List) -> bool:
