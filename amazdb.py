@@ -2,7 +2,7 @@
 """
 Module de gestion de sauvegarde de données dans une DB SQLite.
 """
-import copy
+import json
 import os
 import sqlite3
 import shutil
@@ -319,7 +319,6 @@ class AmazDB:
                             "Status du produit": product[i][5],
                             "Date de création": product[i][6]}
 
-        # "Date de création": datetime.strptime(product[i][6], "%d/%m/%Y").date()}
         # Récupération du dernier prix en date
             requete_prix = f"SELECT date_maj, prix, monnaie FROM tblprix WHERE keyzon = '{product[i][0]}';"
             prix_bdd = self.make_request(requete_prix)
@@ -362,6 +361,8 @@ class AmazDB:
         """
         # Déclaration de variables
         requete = ""
+        dict_prix = {}
+        product_json = ""
 
         # Vérification de l'exstance du répertoire de sortie
         if not os.path.isdir(chemin_exp):
@@ -381,3 +382,32 @@ class AmazDB:
 
         # Exécution de la requête et récupération des données
         product = self.make_request(requete)
+        for i in range(len(product)):
+            product_dict = {"NomDuProduit": product[i][1],
+                            "Note":  product[i][2],
+                            "Evaluation": product[i][4],
+                            "StatusDuProduit": product[i][5],
+                            "DateDeCreation": product[i][6],
+                            "DescriptionDuProduit": product[i][3]}
+
+            requete_prix = f"SELECT date_maj, prix, monnaie FROM tblprix WHERE keyzon = {product[i][0]};"
+            prix_bdd = self.make_request(requete_prix)
+
+            for j in range(len(prix_bdd)):
+                prix_str = str(prix_bdd[j][1]) + prix_bdd[j][2]
+                dict_prix.update({prix_bdd[j][0]: prix_str})
+
+            product_dict.update({"ListeDesPrix": dict_prix})
+            product_json = json.dumps(product_dict, indent=4)
+            try:
+                nom_fic_export = str(product[i][1]).strip().lower().replace(" ", "")[:15] + ".json"
+            except IndexError:
+                nom_fic_export = str(product[i][1]).strip().lower().replace(" ", "") + ".json"
+            nom_fic = os.path.join(chemin_exp, nom_fic_export)
+            with open(nom_fic, "w", encoding="utf-8") as f:
+                f.write(product_json)
+
+            product_dict.clear()
+            dict_prix.clear()
+
+        return True
