@@ -269,9 +269,9 @@ class AmazDB:
                 pass
 
             # Configusation du type des colones du DataFrame  "Date de création": "datetime64[ns]",
-            df1 = df1.astype({'Note': 'float16', "Évaluation": "int",
+            df1 = df1.astype({'Note': 'float16', "Évaluation": "int64",
                               "Nom du produit": "string", "Status du produit": "string", "Description du produit": "string"})
-            df2 = df2.astype({"Prix": "float", "Monnaie": "string"})
+            df2 = df2.astype({"Prix": "float32", "Monnaie": "string"}).sort_values(by="Date de mise à jour", ascending=True)
 
             # Écriture du fichier
             with pd.ExcelWriter(nom_fic, mode="w", date_format="DD/MM/YYYY") as writer:
