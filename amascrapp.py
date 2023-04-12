@@ -87,7 +87,7 @@ class AmaScrapp:
         try:
             note_str = soup.find("span", class_="a-icon-alt").getText().strip()
             self.article.note = float(note_str.split()[0].replace(",", "."))
-        except:
+        except ValueError:
             self.article.note = 0.0
 
     def get_article_status(self, soup: BeautifulSoup) -> None:
