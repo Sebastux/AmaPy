@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_Fichier">
+    <property name="title">
+     <string>&amp;Fichier</string>
+    </property>
+    <widget class="QMenu" name="menu_Exporter">
+     <property name="title">
+      <string>&amp;Exporter</string>
+     </property>
+     <addaction name="action_Un_produit"/>
+     <addaction name="action_Plusieurs_produit_CSV"/>
+     <addaction name="actionE_xport_au_format_json"/>
+    </widget>
+    <widget class="QMenu" name="menu_Importer">
+     <property name="title">
+      <string>&amp;Importer</string>
+     </property>
+     <addaction name="action_Un_produit_2"/>
+     <addaction name="action_Plusieurs_produits"/>
+    </widget>
+    <addaction name="separator"/>
+    <addaction name="menu_Exporter"/>
+    <addaction name="menu_Importer"/>
+    <addaction name="separator"/>
+    <addaction name="action_Quitter_ALT_F4"/>
+   </widget>
+   <widget class="QMenu" name="menu_dition">
+    <property name="title">
+     <string>&amp;Édition</string>
+    </property>
+    <addaction name="actionCr_er_un_graph"/>
+    <addaction name="separator"/>
+    <addaction name="action_Mettre_tout_jour"/>
+    <addaction name="action_Rechercher_un_produit"/>
+    <addaction name="action_Supprimer_un_produit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Aide">
+    <property name="title">
+     <string>&amp;Aide</string>
+    </property>
+    <addaction name="actionA_propos"/>
+    <addaction name="action_Licence"/>
+    <addaction name="actionA_Ide"/>
+   </widget>
+   <addaction name="menu_Fichier"/>
+   <addaction name="menu_dition"/>
+   <addaction name="menu_Aide"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_Un_produit">
+   <property name="text">
+    <string>&amp;Un produit</string>
+   </property>
+  </action>
+  <action name="action_Plusieurs_produit_CSV">
+   <property name="text">
+    <string>&amp;Plusieurs produit (CSV)</string>
+   </property>
+  </action>
+  <action name="actionE_xport_au_format_json">
+   <property name="text">
+    <string>E&amp;xport au format json</string>
+   </property>
+  </action>
+  <action name="action_Un_produit_2">
+   <property name="text">
+    <string>&amp;Un produit</string>
+   </property>
+  </action>
+  <action name="action_Plusieurs_produits">
+   <property name="text">
+    <string>&amp;Plusieurs produits</string>
+   </property>
+  </action>
+  <action name="action_Quitter_ALT_F4">
+   <property name="text">
+    <string>&amp;Quitter ALT+F4</string>
+   </property>
+  </action>
+  <action name="action_Supprimer_un_produit">
+   <property name="text">
+    <string>&amp;Supprimer un produit</string>
+   </property>
+  </action>
+  <action name="action_Mettre_tout_jour">
+   <property name="text">
+    <string>&amp;Mettre tout à jour</string>
+   </property>
+  </action>
+  <action name="action_Rechercher_un_produit">
+   <property name="text">
+    <string>&amp;Rechercher un produit</string>
+   </property>
+  </action>
+  <action name="actionCr_er_un_graph">
+   <property name="text">
+    <string>Créer un graph</string>
+   </property>
+  </action>
+  <action name="actionA_propos">
+   <property name="text">
+    <string>&amp;A propos</string>
+   </property>
+  </action>
+  <action name="action_Licence">
+   <property name="text">
+    <string>&amp;Licence</string>
+   </property>
+  </action>
+  <action name="actionA_Ide">
+   <property name="text">
+    <string>A&amp;ide</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
