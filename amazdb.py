@@ -252,14 +252,17 @@ class AmazDB:
 
             # Création du graphique
             plt.figure(figsize=(40, 5))
-            plt.title("Évolution du prix")
-            plt.xlabel('Date', fontsize=14, color='red')
-            plt.ylabel("Prix en €")
+            plt.suptitle("Évolution du prix du produit", fontsize=20, color="#000000")
+            plt.title(f"{product[j][1]}", fontsize=20, color="#000000")
+            plt.xlabel('Date', fontsize=14, color="#000000")
+            plt.ylabel("Prix en €", color="#000000")
             plt.grid()
             plt.plot(liste_date, liste_prix)
-
+            plt.legend(["Évolution du prix"], loc='upper left')
+            plt.subplot.set_xlimit(xmax=datetime.strptime(liste_date[-1], "%d/%m/%Y").date(), xmin=datetime.strptime(liste_date[0], "%d/%m/%Y").date())
+            plt.subplot.set_ylim(ymin=0, ymax=max(liste_prix))
             # Sauvegarde du graphique
-            plt.savefig(chemin_graphique)
+            plt.savefig(chemin_graphique, dpi=300, bbox_inches="tight")
             liste_date.clear()
             liste_prix.clear()
 
