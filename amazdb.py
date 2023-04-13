@@ -243,26 +243,12 @@ class AmazDB:
             nom_fic = os.path.join(rep_export, nom_fic_export)
             nom_image_bdd = os.path.basename(chemin_image_bdd)
             chemin_image = os.path.join(chemin_export, rep_export, nom_image_bdd)
-            chemin_graphique = os.path.join(chemin_export, rep_export, "graphique.png")
             try:
                 os.mkdir(rep_export)
             except FileExistsError:
                 shutil.rmtree(rep_export, ignore_errors=True)
                 os.mkdir(rep_export)
 
-            # Création du graphique
-            plt.figure(figsize=(40, 5))
-            plt.suptitle("Évolution du prix du produit", fontsize=20, color="#000000")
-            plt.title(f"{product[j][1]}", fontsize=20, color="#000000")
-            plt.xlabel('Date', fontsize=14, color="#000000")
-            plt.ylabel("Prix en €", color="#000000")
-            plt.grid()
-            plt.plot(liste_date, liste_prix)
-            plt.legend(["Évolution du prix"], loc='upper left')
-            plt.subplot.set_xlimit(xmax=datetime.strptime(liste_date[-1], "%d/%m/%Y").date(), xmin=datetime.strptime(liste_date[0], "%d/%m/%Y").date())
-            plt.subplot.set_ylim(ymin=0, ymax=max(liste_prix))
-            # Sauvegarde du graphique
-            plt.savefig(chemin_graphique, dpi=300, bbox_inches="tight")
             liste_date.clear()
             liste_prix.clear()
 
