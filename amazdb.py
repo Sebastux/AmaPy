@@ -400,3 +400,11 @@ class AmazDB:
             dict_prix.clear()
 
         return True
+
+    def create_product_graph(self, chemin_export: str, product_id: int) -> bool:
+        """
+        Création du graphique des produits.
+        :param chemin_export: Chemin du répertoire où seront copier les exports de fichiers
+        :param product_id: Clé primaire du produit à exporter.
+        :return:True si l'export s'est bien passé et False dans le cas contraire.
+        """

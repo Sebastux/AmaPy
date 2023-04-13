@@ -1,26 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>frm_options</class>
+ <widget class="QDialog" name="frm_options">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>791</width>
-    <height>941</height>
+    <width>575</width>
+    <height>940</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Configuration de l'application</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="ressources/options.res">
-    <normaloff>:/home/Sebastien/Dépots/publique/AmaPy/Icones/settings.png</normaloff>:/home/Sebastien/Dépots/publique/AmaPy/Icones/settings.png</iconset>
+  <property name="modal">
+   <bool>true</bool>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>900</y>
+     <width>171</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="gbx_fichiers">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>581</width>
+     <height>371</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Fichiers</string>
+   </property>
+   <widget class="QLabel" name="lbl_chemin_export_fic">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>35</y>
+      <width>201</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Répertoire d'export des fichiers :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edt_chemin_fic">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>30</y>
+      <width>321</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="qbtn_fic">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>30</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edt_chemin_img">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>60</y>
+      <width>321</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_chemin_exporti_mg">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>65</y>
+      <width>201</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Répertoire d'export des images :</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="qbtn_img">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>60</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="gbx_reseau">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>370</y>
+     <width>581</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Réseau</string>
+   </property>
+   <widget class="QCheckBox" name="cbx_proxy">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>221</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;L'utilisation de proxy accélère les téléchargements de masse, car il permet de ne pas se faire repérer par Amazon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modifie la façon dont le logiciel se connecte au serveur.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Activer l'utilisation des proxys</string>
+    </property>
+   </widget>
+  </widget>
  </widget>
- <resources>
-  <include location="ressources/options.res"/>
- </resources>
- <connections/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>frm_options</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>frm_options</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
