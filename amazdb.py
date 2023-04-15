@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Module de gestion de sauvegarde de données dans une DB SQLite.
-"""
 import json
 import os
 import sqlite3
@@ -13,10 +10,6 @@ import matplotlib.pyplot as plt
 
 
 class AmazDB:
-    """
-    Classe permettant la sauvegarde des produits dans une DB SQLite.
-    """
-
     def __init__(self, chemin_fic: str):
         # Création des requêtes
         self.__req1 = "INSERT INTO amatable (nom_produit, note, description, evaluation, \
@@ -36,13 +29,7 @@ class AmazDB:
         else:
             self.create_db_fic()
 
-        # self.connecteur_db.row_factory = sqlite3.Row
-
     def create_db_fic(self) -> None:
-        """
-        Méthode permettant de créer un fichier de base de donnèes.
-        :return: None
-        """
         self.connecteur_db = sqlite3.connect(self.chemin_fic)
         self.curseur_db = self.connecteur_db.cursor()
         with open(os.path.join("requetes", "createdb.sql"), "r+t", encoding="utf-8") as f:
@@ -50,38 +37,20 @@ class AmazDB:
             self.curseur_db.executescript(requete)
 
     def open_db_fic(self) -> None:
-        """
-        Méthode permettant d'ouvrir un fichier de base de donnèes.
-        :return: None
-        """
         self.connecteur_db = sqlite3.connect(self.chemin_fic)
         self.curseur_db = self.connecteur_db.cursor()
 
     def close_connection(self) -> None:
-        """
-        Méthode permettant de fenmer un fichier de base de donnèes.
-        :return: None
-        """
         self.connecteur_db.commit()
         self.connecteur_db.close()
 
     def drop_db(self) -> None:
-        """
-        Méthode permettant de supprimer un fichier de base de donnèes.
-        :return: None
-        """
         self.connecteur_db.commit()
         self.connecteur_db.close()
         os.remove(self.chemin_fic)
         self.create_db_fic()
 
     def make_request(self, requete: str, commit: bool = False) -> List[Tuple]:
-        """
-        Méthode permettant de faire une requete sur la base de données
-        :param requete: Contenu de la requéte sous forme de chaine de caractères
-        :param commit: Si la requête insère ou supprime des données, permet la validation de cette requête.
-        :return: Retourne le résultat sous forme d'une liste de tuple.
-        """
         self.curseur_db.execute(requete)
         row = self.curseur_db.fetchall()
 
@@ -90,12 +59,6 @@ class AmazDB:
         return row
 
     def make_requests(self, requetes: str, commit: bool = False) -> List[Tuple]:
-        """
-        Méthode permettant de faire une requete sur la base de données
-        :param requetes: Contenu des requétes sous forme de chaine de caractères
-        :param commit: Si les requêtes insèrent ou suppriment des données, permet la validation de cette requête.
-        :return: Retourne le résultat sous forme d'une liste de tuple.
-        """
         self.curseur_db.executescript(requetes)
         lignes = self.curseur_db.fetchall()
 
@@ -104,11 +67,6 @@ class AmazDB:
         return lignes
 
     def add_product(self, product: Dict) -> None:
-        """
-        Ajoute un nouveau produit dans la BDD.
-        :param product: Informations du produit sous forme de dictionnaire.
-        :return: None
-        """
         self.curseur_db.execute("SELECT MAX(keyzon) FROM amatable LIMIT 1;")
         max_key = self.curseur_db.fetchone()
         if max_key[0] is None:
@@ -124,21 +82,11 @@ class AmazDB:
         self.connecteur_db.commit()
 
     def remove_product(self, product: Dict) -> None:
-        """
-        Supprime un produit dans la BDD.
-        :param product: Informations du produit sous forme de dictionnaire.
-        :return: None
-        """
         requete = "delete from amatable where nom_produit = '" + product["nom_produit"] + "';"
         self.curseur_db.execute(requete)
         self.connecteur_db.commit()
 
     def update_product(self, product: Dict) -> bool:
-        """
-        Méthode permettant la mise à jour d'un produit suite à une nouvelle recherche
-        :param product: Dictionnaire contenant la liste des informations à mettre à jour
-        :return: True si la MAJ est faite et False dans le cas contraire
-        """
         # Déclarations de variables
         retour = False
         date_maj = datetime.strptime(product["date_maj"], "%d/%m/%Y")
@@ -170,14 +118,6 @@ class AmazDB:
         return retour
 
     def export_datas_to_excell(self, chemin_exp: str, product_list: List) -> bool:
-        """
-        Exporte un produit dans un fichier au format xlsx. La méthode crée un
-        sous répertoire contenant un fichier Excel, une image du produit et
-        un graphique de l'évolution des prix.
-        :param chemin_exp: Chemin du répertoire où seront copier les exports de fichiers
-        :param product_list: Listes de noms de produit à exporter.
-        :return:True si l'export s'est bien passé et False dans le cas contraire.
-        """
         # Déclaration de variables
         requete = ""
         product = ""
@@ -269,13 +209,6 @@ class AmazDB:
         return True
 
     def export_datas_to_csv(self, chemin_exp: str, product_list: List) -> bool:
-        """
-        Export des données au format CSV. L'intégralité des données seront exportée et seul le dernier prix en date sera
-        fournie.
-        :param chemin_exp: Chemin du répertoire où seront copier les exports de fichiers
-        :param product_list: Listes de noms de produit à exporter.
-        :return:True si l'export s'est bien passé et False dans le cas contraire.
-        """
         # Déclaration de variables
         requete = ""
         chemin_export = chemin_exp
@@ -341,13 +274,6 @@ class AmazDB:
         return True
 
     def export_datas_to_json(self, chemin_exp: str, product_list: List) -> bool:
-        """
-        Export des données au format CSV. L'intégralité des données seront exportée et seul le dernier prix en date sera
-        fournie.
-        :param chemin_exp: Chemin du répertoire où seront copier les exports de fichiers
-        :param product_list: Listes de noms de produit à exporter.
-        :return:True si l'export s'est bien passé et False dans le cas contraire.
-        """
         # Déclaration de variables
         requete = ""
         dict_prix = {}
@@ -401,10 +327,5 @@ class AmazDB:
 
         return True
 
-    def create_product_graph(self, chemin_export: str, product_id: int) -> bool:
-        """
-        Création du graphique des produits.
-        :param chemin_export: Chemin du répertoire où seront copier les exports de fichiers
-        :param product_id: Clé primaire du produit à exporter.
-        :return:True si l'export s'est bien passé et False dans le cas contraire.
-        """
+    def create_product_graph(self, chemin_export: str, product_id: int, extension: str = "jpg" | "png" | "pdf") -> bool:
+        pass
