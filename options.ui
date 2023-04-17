@@ -119,6 +119,44 @@
      <string>...</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>100</y>
+      <width>201</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Format d'export de graphique :</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>100</y>
+      <width>321</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>jpg</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>pdf</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>png</string>
+     </property>
+    </item>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="gbx_reseau">
    <property name="geometry">
@@ -145,7 +183,7 @@
      </rect>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;L'utilisation de proxy accélère les téléchargements de masse, car il permet de ne pas se faire repérer par Amazon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>L'utilisation de proxy accélère les téléchargements de masse, car il permet de ne pas se faire repérer par Amazon.</string>
     </property>
     <property name="whatsThis">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modifie la façon dont le logiciel se connecte au serveur.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
