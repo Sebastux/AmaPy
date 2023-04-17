@@ -115,7 +115,7 @@ class AmazDB:
         """
         ...
 
-    def create_product_graph(self, chemin_export: str, product_id: int, extension: str = "jpg" | "png" | "pdf") -> bool:
+    def create_product_graph(self, chemin_export: str, product_id: int, extension: str = "jpg") -> bool:
         """
         Création du graphique des produits.
         :param chemin_export: Chemin du répertoire où seront copier les exports de fichiers

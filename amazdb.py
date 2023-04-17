@@ -3,10 +3,13 @@ import json
 import os
 import sqlite3
 import shutil
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Dict, List, Tuple
+
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 
 class AmazDB:
@@ -95,7 +98,8 @@ class AmazDB:
         recherche1 = "SELECT keyzon, nom_produit FROM amatable WHERE nom_produit = '" + product["nom_produit"] + "';"
         recherche2 = "SELECT keyzon, prix, date_maj FROM tblprix WHERE keyzon = " + str(cle_primaire) + ";"
         ajout_prix = "INSERT INTO tblprix (keyzon, prix, monnaie, date_maj) VALUES(?, ?, ?, ?);"
-        maj_produit = "UPDATE amatable SET note = " + str(product["note"]) + ", evaluation = " + str(product["evaluation"]) + " WHERE keyzon = " + str(cle_primaire) + ";"
+        maj_produit = "UPDATE amatable SET note = " + str(product["note"]) + ", evaluation = " + str(
+            product["evaluation"]) + " WHERE keyzon = " + str(cle_primaire) + ";"
 
         # Récupération de la clé primaire
         self.curseur_db.execute(recherche1)
@@ -199,13 +203,20 @@ class AmazDB:
 
             # Configusation du type des colones du DataFrame  "Date de création": "datetime64[ns]",
             df1 = df1.astype({'Note': 'float16', "Évaluation": "int64",
-                              "Nom du produit": "string", "Status du produit": "string", "Description du produit": "string"})
-            df2 = df2.astype({"Prix": "float32", "Monnaie": "string"}).sort_values(by="Date de mise à jour", ascending=True)
+                              "Nom du produit": "string", "Status du produit": "string",
+                              "Description du produit": "string"})
+            df2 = df2.astype({"Prix": "float32", "Monnaie": "string"}).sort_values(by="Date de mise à jour",
+                                                                                   ascending=True)
 
             # Écriture du fichier
             with pd.ExcelWriter(nom_fic, mode="w", date_format="DD/MM/YYYY") as writer:
-                df1.to_excel(writer, sheet_name="Produit", engine='xlsxwriter', header=True, float_format="%.2f", index=False)
-                df2.to_excel(writer, sheet_name="historique Prix", engine='xlsxwriter', header=True, float_format="%.2f", index=False)
+                df1.to_excel(writer, sheet_name="Produit", engine='xlsxwriter', header=True, float_format="%.2f",
+                             index=False)
+                df2.to_excel(writer, sheet_name="historique Prix", engine='xlsxwriter', header=True,
+                             float_format="%.2f", index=False)
+
+            # Création du fichier image
+            self.create_product_graph(rep_export, product[i][1], extension="jpg")
         return True
 
     def export_datas_to_csv(self, chemin_exp: str, product_list: List) -> bool:
@@ -236,12 +247,12 @@ class AmazDB:
         product = self.make_request(requete)
         for i in range(len(product)):
             product_dict = {"Nom du produit": product[i][1],
-                            "Note":  product[i][2],
+                            "Note": product[i][2],
                             "Évaluation": product[i][4],
                             "Status du produit": product[i][5],
                             "Date de création": product[i][6]}
 
-        # Récupération du dernier prix en date
+            # Récupération du dernier prix en date
             requete_prix = f"SELECT date_maj, prix, monnaie FROM tblprix WHERE keyzon = '{product[i][0]}';"
             prix_bdd = self.make_request(requete_prix)
             for j in range(len(prix_bdd)):
@@ -256,7 +267,7 @@ class AmazDB:
             product_dict.update({"Monnaie": prix_bdd[0][2]})
             product_dict.update({"Description du produit": product[i][3]})
 
-        # Création du dataframe
+            # Création du dataframe
             if i == 0:
                 df = pd.DataFrame([product_dict])
                 # df.style.format(precision=2, decimal=",")
@@ -264,11 +275,13 @@ class AmazDB:
                 # df.loc[i] = copy.deepcopy(product_dict)
                 df.loc[i] = product_dict
 
-        # Réinitialisation de la liste
+            # Réinitialisation de la liste
             liste_date.clear()
 
         # Création du fichier csv
-        df = df.astype({"Prix du produit": 'float', 'Note': 'float', "Évaluation": "int", "Date de mise à jour": "datetime64[ns]", "Date de création": "datetime64[ns]"})
+        df = df.astype(
+            {"Prix du produit": 'float', 'Note': 'float', "Évaluation": "int", "Date de mise à jour": "datetime64[ns]",
+             "Date de création": "datetime64[ns]"})
         df.to_csv(os.path.join(chemin_export, nom_fic), header=True, index=False, sep=",", date_format="%d/%m/%Y",
                   mode="w", encoding="utf-8", decimal=",", float_format="%.2f")
         return True
@@ -299,7 +312,7 @@ class AmazDB:
         product = self.make_request(requete)
         for i in range(len(product)):
             product_dict = {"NomDuProduit": product[i][1],
-                            "Note":  product[i][2],
+                            "Note": product[i][2],
                             "Evaluation": product[i][4],
                             "StatusDuProduit": product[i][5],
                             "DateDeCreation": product[i][6],
@@ -322,10 +335,112 @@ class AmazDB:
             with open(nom_fic, "w", encoding="utf-8") as f:
                 f.write(product_json)
 
+            # Réinitialisation des listes
             product_dict.clear()
             dict_prix.clear()
 
         return True
 
-    def create_product_graph(self, chemin_export: str, product_id: int, extension: str = "jpg" | "png" | "pdf") -> bool:
-        pass
+    def create_product_graph(self, chemin_export: str, product_id: int, extension: str = "jpg") -> bool:
+        # Déclaration de variables
+        liste_tuple_prix = [tuple()]
+        liste_prix = [tuple()]
+        requete_prix = ""
+        df = pd.DataFrame()
+        date_debut = datetime.now().date()
+        date_fin = datetime.now().date()
+        taille_liste = 0
+        nom_produit = ""
+        chemin_fic = ""
+
+        # Vérification de l'exstance du répertoire de sortie
+        if not os.path.isdir(chemin_export):
+            raise FileNotFoundError("Le répertoire de sortie n'existe pas.")
+
+        # Vérification du type de l'ID produit
+        if not isinstance(product_id, int):
+            raise TypeError("Le type de product_id doit être un entier.")
+
+        # Vérification de l'extension
+        if extension not in ["jpg", "png", "pdf"]:
+            raise ValueError("L'extension du fichier doit être jpg, png ou pdf.")
+
+        # Vérification de la valeur de l'ID produit
+        if product_id <= 0:
+            raise ValueError("La variable product_id doit être supérieur à 0.")
+
+        # Création et exécution de la requête
+        requete_prix = f"SELECT date_maj, prix FROM tblprix WHERE keyzon = {product_id};"
+        liste_tuple_prix = self.make_request(requete_prix)
+        nom_colonne = ["date_maj", "prix"]
+
+        # Récupération du nom du produit
+        requete_prix = f"SELECT nom_produit FROM amatable WHERE keyzon = {product_id};"
+        nom_produit = self.make_request(requete_prix)[0][0]
+
+        # Diminution de la taille du nom du produit
+        if len(nom_produit) > 15:
+            nom_produit = nom_produit[:15]
+
+        # Test de la taille de la liste
+        if len(liste_tuple_prix) == 0:
+            return False
+
+        # Récupération de la taille de la liste
+        taille_liste = len(liste_tuple_prix)
+
+        # Convertion des dates str en date
+        for i in range(len(liste_tuple_prix)):
+            liste_prix.append((datetime.strptime(liste_tuple_prix[i][0], "%d/%m/%Y").date(), liste_tuple_prix[i][1]))
+
+        # Création du dataframe et tried des données
+        df = pd.DataFrame(liste_prix, columns=nom_colonne).sort_values(by="date_maj", ascending=True).astype(
+            {"prix": "float64", "date_maj": "datetime64[ns]"}).reset_index(drop=True)
+        date_debut = df["date_maj"][0]
+        date_fin = df["date_maj"][len(df) - 2] + timedelta(days=1)
+
+        # Création du graphique et echelle automatique
+        if taille_liste <= 30:
+            fig, ax = plt.subplots(figsize=(30, 5), layout="constrained")
+            ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
+            ax.xaxis.set_minor_locator(mdates.DayLocator(interval=1))
+        elif taille_liste <= 60:
+            fig, ax = plt.subplots(figsize=(50, 5))
+            ax.xaxis.set_major_locator(mdates.DayLocator(interval=7))
+            ax.xaxis.set_minor_locator(mdates.DayLocator(interval=1))
+        elif taille_liste <= 366:
+            fig, ax = plt.subplots(figsize=(100, 5))
+            ax.xaxis.set_major_locator(mdates.DayLocator(interval=7))
+            ax.xaxis.set_minor_locator(mdates.DayLocator(interval=1))
+        else:
+            fig, ax = plt.subplots(figsize=(100, 5))
+            ax.xaxis.set_major_locator(mdates.MonthLocator(interval=1))
+            ax.xaxis.set_minor_locator(mdates.MonthLocator(interval=1))
+
+        # Nomage des axes et style du graphe
+        ax.plot(df["date_maj"], df["prix"], label="objet ouf guedin", marker="s")
+        plt.style.use("default")
+
+        # Titre et label des axes
+        ax.set_title(f"Évolution du prix de l'objet\n{nom_produit}", color="#000000")
+        ax.set_xlabel("Date des mises à jour.", fontsize=20, color="#2f4eb4")
+        ax.set_ylabel("Prix en €", fontsize=20, color="#2f4eb4")
+
+        # Limites de la courbe
+        ax.set_xlim(date_debut, date_fin)
+        ax.set_ylim(0, max(df["prix"])+25)
+        ax.relim()
+        ax.autoscale_view()
+
+        # Formatage des axes
+        ax.set_yticks(np.arange(0, max(df["prix"]) + 25, 25))
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%d/%m/%Y'))
+        fig.autofmt_xdate()
+        ax.grid(True, color="#000000")
+
+        # Création du fichier de sauvegarde
+        chemin_fic = os.path.join(chemin_export, nom_produit + "." + extension)
+        ax.legend(["Évolution du prix"])
+        plt.savefig(chemin_fic, dpi=300, bbox_inches="tight")
+        plt.close()
+        return True
