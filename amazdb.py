@@ -84,10 +84,23 @@ class AmazDB:
         self.curseur_db.execute(self.__req3, [max_key, product["url"], product["chemin_image"]])
         self.connecteur_db.commit()
 
-    def remove_product(self, product: Dict) -> None:
-        requete = "delete from amatable where nom_produit = '" + product["nom_produit"] + "';"
+    def remove_product(self, product: str) -> bool:
+        # Création des requêtes
+        requete = f"DELETE FROM amatable WHERE nom_produit = '{product}';"
+
+        # Test du type de la variable
+        if not isinstance(product, str):
+            raise TypeError("La variable doit être un string.")
+
+        # Test de la taille de la chaine
+        if len(product) == 0:
+            return False
+
+        # Suppression des données
         self.curseur_db.execute(requete)
         self.connecteur_db.commit()
+
+        return True
 
     def update_product(self, product: Dict) -> bool:
         # Déclarations de variables
@@ -95,6 +108,20 @@ class AmazDB:
         date_maj = datetime.strptime(product["date_maj"], "%d/%m/%Y")
         date_maj_db = ""
         cle_primaire = 0
+        recherche1 = ""
+        recherche2 = ""
+        ajout_prix = ""
+        maj_produit = ""
+
+        # Test du type de la variable
+        if not isinstance(product, dict):
+            raise TypeError("La variable doit être un dictionnaire.")
+
+        # Test de la taille du dictionnaire
+        if len(product) == 0:
+            raise ValueError("Le dictionnaire est vide.")
+
+        # Création des requêtes
         recherche1 = "SELECT keyzon, nom_produit FROM amatable WHERE nom_produit = '" + product["nom_produit"] + "';"
         recherche2 = "SELECT keyzon, prix, date_maj FROM tblprix WHERE keyzon = " + str(cle_primaire) + ";"
         ajout_prix = "INSERT INTO tblprix (keyzon, prix, monnaie, date_maj) VALUES(?, ?, ?, ?);"

@@ -11,6 +11,10 @@ class AmazDB:
     """
 
     def __init__(self, chemin_fic: str):
+        """
+        Constructeur de la classe
+        :param chemin_fic: Chemin de la DB à ouvrir ou à créer.
+        """
         ...
 
     def create_db_fic(self) -> None:
@@ -67,11 +71,11 @@ class AmazDB:
         """
         ...
 
-    def remove_product(self, product: Dict) -> None:
+    def remove_product(self, product: str) -> bool:
         """
         Supprime un produit dans la BDD.
-        :param product: Informations du produit sous forme de dictionnaire.
-        :return: None
+        :param: product Informations du produit sous forme de dictionnaire.
+        :return: bool True si la suppression est faite et False dans le cas contraire
         """
         ...
 
