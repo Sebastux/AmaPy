@@ -2,3 +2,4 @@ pyinstaller
 ruff
 pylint
 flake8
+PyQt6

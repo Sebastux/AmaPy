@@ -1,4 +1,3 @@
-pyside6
 pandas[excel, html, xml, plot]
 requests
 matplotlib
