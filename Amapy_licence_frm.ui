@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>548</width>
-    <height>423</height>
+    <width>637</width>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,13 +19,17 @@
      <rect>
       <x>-10</x>
       <y>0</y>
-      <width>561</width>
-      <height>431</height>
+      <width>651</width>
+      <height>471</height>
      </rect>
     </property>
-    <layout class="QFormLayout" name="formLayout">
+    <layout class="QFormLayout" name="lyt_licence">
      <item row="0" column="1">
-      <widget class="QPlainTextEdit" name="plainTextEdit"/>
+      <widget class="QPlainTextEdit" name="ptedt_licence">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

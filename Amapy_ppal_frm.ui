@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>830</width>
+    <width>819</width>
     <height>920</height>
    </rect>
   </property>
@@ -35,29 +35,6 @@
     <property name="title">
      <string/>
     </property>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>10</y>
-       <width>101</width>
-       <height>18</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Nom du produit</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>30</y>
-       <width>701</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
@@ -126,9 +103,9 @@
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>180</y>
-       <width>81</width>
+       <x>59</x>
+       <y>185</y>
+       <width>74</width>
        <height>18</height>
       </rect>
      </property>
@@ -139,9 +116,9 @@
     <widget class="QLabel" name="label_8">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>180</y>
-       <width>121</width>
+       <x>390</x>
+       <y>186</y>
+       <width>120</width>
        <height>18</height>
       </rect>
      </property>
@@ -195,9 +172,9 @@
     <widget class="QLineEdit" name="lineEdit_8">
      <property name="geometry">
       <rect>
-       <x>450</x>
+       <x>390</x>
        <y>210</y>
-       <width>81</width>
+       <width>125</width>
        <height>26</height>
       </rect>
      </property>
@@ -208,9 +185,9 @@
     <widget class="QLineEdit" name="lineEdit_6">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>30</x>
        <y>210</y>
-       <width>81</width>
+       <width>125</width>
        <height>26</height>
       </rect>
      </property>
@@ -233,6 +210,28 @@
       </item>
      </layout>
     </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>1</y>
+       <width>711</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Nom du produit</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+     </layout>
+    </widget>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
@@ -245,30 +244,36 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
+      <widget class="QPushButton" name="btn_ajouter">
+       <property name="text">
+        <string>&amp;Ajouter</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>&amp;OK</string>
+        <string>&amp;Graphique</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>Importer un produit à partir de son URL.</string>
+       </property>
+       <property name="text">
+        <string>&amp;Importer</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_3">
        <property name="text">
-        <string>A&amp;nnuler</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>A&amp;jouter</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_4">
-       <property name="text">
-        <string>&amp;Supprimer</string>
+        <string>&amp;Liste prix</string>
        </property>
       </widget>
      </item>
@@ -280,12 +285,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_6">
-       <property name="toolTip">
-        <string>Importer un produit à partir de son URL.</string>
-       </property>
+      <widget class="QPushButton" name="pushButton_4">
        <property name="text">
-        <string>&amp;Importer</string>
+        <string>&amp;Supprimer</string>
        </property>
       </widget>
      </item>
@@ -312,7 +314,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>830</width>
+     <width>819</width>
      <height>23</height>
     </rect>
    </property>
