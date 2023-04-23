@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>frm_about</class>
+ <widget class="QMainWindow" name="frm_about">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>667</width>
+    <height>578</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>Propos de - Amapy</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>10</y>
+      <width>241</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>BlankCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../ressources/4wj54hj1.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>230</y>
+      <width>671</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="plainText">
+     <string>Amapy version 1.0.0
+
+Ce logiciel est fourni gratuitement pour une utilisation personnelle.
+Ce logiciel doit être utilisé pour surveiller le prix de produit vendu par amazon.
+Il utilise la technique du scrapping. Cette technique n'est pas très bien vu est peu être bloqué par Amazon en cas d'abus, le développeur ne peut être tenu pour responsable en cas d'abus.
+Vous êtes autorisé à le distribuer gratuitement par le moyen que vous souhaitez.
+Ce logiciel est développé en python 3.11 et utilise les bibliothèques tiers suivantes :
+
+- Qt version 6.4.3
+- PyQt6 version 6.5.0
+- pandas version 2.0.0
+- XlsxWriter version 3.1.0
+
+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_ok">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>530</y>
+      <width>80</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Fermer la fenêtre</string>
+    </property>
+    <property name="text">
+     <string>&amp;OK</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>plainTextEdit</tabstop>
+  <tabstop>btn_ok</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btn_ok</sender>
+   <signal>clicked()</signal>
+   <receiver>frm_about</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>315</x>
+     <y>541</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>405</x>
+     <y>531</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
