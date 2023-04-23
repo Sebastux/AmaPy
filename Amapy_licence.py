@@ -1,7 +1,9 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow
-from PyQt6 import uic
 import sys
 import os
+
+from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow
+from PyQt6 import uic
+
 
 
 class Amapy_Licence(QMainWindow):
