@@ -1,232 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>frm_options</class>
- <widget class="QDialog" name="frm_options">
-  <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
-  </property>
+ <widget class="QMainWindow" name="frm_options">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>575</width>
-    <height>940</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Configuration de l'application</string>
+   <string>Amapy options</string>
   </property>
-  <property name="modal">
-   <bool>true</bool>
+  <property name="windowIcon">
+   <iconset resource="../Icones/resources.qrc">
+    <normaloff>:/icons/Amazon.ico</normaloff>:/icons/Amazon.ico</iconset>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>900</y>
-     <width>171</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
-  <widget class="QGroupBox" name="gbx_fichiers">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>581</width>
-     <height>371</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Fichiers</string>
-   </property>
-   <widget class="QLabel" name="lbl_chemin_export_fic">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>35</y>
-      <width>201</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Répertoire d'export des fichiers :</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="edt_chemin_fic">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>30</y>
-      <width>321</width>
-      <height>26</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QToolButton" name="qbtn_fic">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>30</y>
-      <width>25</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>...</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="edt_chemin_img">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>60</y>
-      <width>321</width>
-      <height>26</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbl_chemin_exporti_mg">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>65</y>
-      <width>201</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Répertoire d'export des images :</string>
-    </property>
-   </widget>
-   <widget class="QToolButton" name="qbtn_img">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>60</y>
-      <width>25</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>...</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>100</y>
-      <width>201</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Format d'export de graphique :</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>100</y>
-      <width>321</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>jpg</string>
-     </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <property name="leftMargin">
+       <number>300</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="btn_ok">
+        <property name="maximumSize">
+         <size>
+          <width>77215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>&amp;OK</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
-    <item>
-     <property name="text">
-      <string>pdf</string>
-     </property>
+    <item row="1" column="1">
+     <layout class="QGridLayout" name="gridLayout_3">
+      <property name="rightMargin">
+       <number>300</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="btn_annuler">
+        <property name="text">
+         <string>&amp;Annuler</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
-    <item>
-     <property name="text">
-      <string>png</string>
-     </property>
+    <item row="0" column="0" colspan="2">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>Tab 1</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_2">
+         <attribute name="title">
+          <string>Tab 2</string>
+         </attribute>
+        </widget>
+       </widget>
+      </item>
+     </layout>
     </item>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="gbx_reseau">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>370</y>
-     <width>581</width>
-     <height>331</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Réseau</string>
-   </property>
-   <widget class="QCheckBox" name="cbx_proxy">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>221</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>L'utilisation de proxy accélère les téléchargements de masse, car il permet de ne pas se faire repérer par Amazon.</string>
-    </property>
-    <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modifie la façon dont le logiciel se connecte au serveur.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="text">
-     <string>Activer l'utilisation des proxys</string>
-    </property>
-   </widget>
+   </layout>
   </widget>
  </widget>
- <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>frm_options</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>frm_options</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <resources>
+  <include location="../Icones/resources.qrc"/>
+ </resources>
+ <connections/>
 </ui>
