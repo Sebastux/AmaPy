@@ -19,20 +19,23 @@ class AmapyOptions(QMainWindow):
         # Copnfiguration de la fenetre
         self.setup_window()
 
+        # config de la tab par défaut
+        self.ui.tabw_options.setCurrentIndex(0)
+
         # Déclaration des événements
         self.ui.btn_ok.clicked.connect(self.ok_clicked)
         self.ui.btn_annuler.clicked.connect(self.annuler_clicked)
 
     def setup_window(self) -> None:
         """
-        Configure la fenetre d'options de l'application.
+        Configure la fenêtre d'options de l'application.
         :return: None
         """
-        # Taille fixe pour la fenetre
+        # Taille fixe pour la fenêtre
         self.setFixedWidth(self.frameGeometry().width())
         self.setFixedHeight(self.frameGeometry().height())
 
-        # Centrage de la femnetre
+        # Centrage de la fenêtre
         qr = self.frameGeometry()
         cp = self.screen().availableGeometry().center()
 
@@ -41,21 +44,21 @@ class AmapyOptions(QMainWindow):
 
     def show_options(self) -> None:
         """
-        Affiche la fenetre de configuration de l'application.
+        Affiche la fenêtre de configuration de l'application.
         :return: None
         """
         self.show()
 
     def ok_clicked(self) -> None:
         """
-        Sauvegarde les parametres et ferme la fenetre.
+        Sauvegarde les parametres et ferme la fenêtre.
         :return: None
         """
         self.close()
 
     def annuler_clicked(self) -> None:
         """
-        Ferme la fenetre de configuration sans sauvegardes les options.
+        Ferme la fenêtre de configuration sans sauvegardes les options.
         :return: None
         """
         self.close()
