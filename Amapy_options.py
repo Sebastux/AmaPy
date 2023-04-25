@@ -1,8 +1,9 @@
 import sys
 import os
 
-from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow
+from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow, QFileDialog
 from PyQt6 import uic
+from pathlib import Path
 
 
 class AmapyOptions(QMainWindow):
@@ -25,6 +26,9 @@ class AmapyOptions(QMainWindow):
         # Déclaration des événements
         self.ui.btn_ok.clicked.connect(self.ok_clicked)
         self.ui.btn_annuler.clicked.connect(self.annuler_clicked)
+        self.ui.tbn_bdd.clicked.connect(self.tbn_bdd_clicked)
+        self.ui.tbtn_export.clicked.connect(self.tbtn_export_clicked)
+        self.ui.tbtn_images.clicked.connect(self.tbtn_images_clicked)
 
     def setup_window(self) -> None:
         """
@@ -62,6 +66,36 @@ class AmapyOptions(QMainWindow):
         :return: None
         """
         self.close()
+
+    def tbn_bdd_clicked(self) -> None:
+        """
+        Permet de selectionner le répertoire de la BDD.
+        :return: None
+        """
+        chemin_bdd = QFileDialog.getExistingDirectory(self, "Chemin de sauvegarde de la base de données.")
+        if chemin_bdd:
+            path = Path(chemin_bdd)
+            self.ui.edt_bdd.setText(str(path))
+
+    def tbtn_export_clicked(self) -> None:
+        """
+        Permet de selectionner le répertoire d'export.
+        :return: None
+        """
+        chemin_export = QFileDialog.getExistingDirectory(self, "Chemin de sauvegarde des export.")
+        if chemin_export:
+            path = Path(chemin_export)
+            self.ui.edt_export.setText(str(path))
+
+    def tbtn_images_clicked(self) -> None:
+        """
+        Permet de selectionner le répertoire d'export des images.
+        :return: None
+        """
+        chemin_images = QFileDialog.getExistingDirectory(self, "Chemin de sauvegarde des images.")
+        if chemin_images:
+            path = Path(chemin_images)
+            self.ui.edt_images.setText(str(path))
 
 
 def main() -> None:
