@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>Icones/Amazon.ico</normaloff>Icones/Amazon.ico</iconset>
+    <normaloff>../ressources/amazon_logo_icon_134611.png</normaloff>../ressources/amazon_logo_icon_134611.png</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
