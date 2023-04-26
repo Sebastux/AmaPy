@@ -17,9 +17,6 @@ class AmapyOptions(QMainWindow):
         # Initialisation de variables
         self.ui = uic.loadUi(os.path.join("ui", "options_frm.ui"), self)
 
-        # Copnfiguration de la fenetre
-        self.setup_window()
-
         # config de la tab par défaut
         self.ui.tabw_options.setCurrentIndex(0)
 
@@ -51,6 +48,7 @@ class AmapyOptions(QMainWindow):
         Affiche la fenêtre de configuration de l'application.
         :return: None
         """
+        # Affichage de la fenêtre
         self.show()
 
     def ok_clicked(self) -> None:
@@ -105,6 +103,7 @@ def main() -> None:
     """
     app = QApplication(sys.argv)
     options = AmapyOptions()
+    options.setup_window()
     options.show_options()
     sys.exit(app.exec())
 

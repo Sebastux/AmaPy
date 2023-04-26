@@ -49,6 +49,7 @@ def main() -> None:
     """
     app = QApplication(sys.argv)
     about = AmapyAbout()
+    about.setup_window()
     about.show_about()
     sys.exit(app.exec())
 
