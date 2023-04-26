@@ -5,8 +5,10 @@ from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow
 from PyQt6 import uic
 
 
-
-class Amapy_Licence(QMainWindow):
+class AmapyLicence(QMainWindow):
+    """
+    Affichage de la licence du logiciel.
+    """
     def __init__(self):
         super().__init__()
         self.ui = uic.loadUi(os.path.join("ui", "Amapy_licence_frm.ui"), self)
