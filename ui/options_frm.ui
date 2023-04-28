@@ -31,7 +31,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="documentMode">
      <bool>false</bool>
@@ -223,7 +223,7 @@
      <attribute name="title">
       <string extracomment="Configuration des options réseau">Réseau</string>
      </attribute>
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QCheckBox" name="cb_proxy">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -286,7 +286,7 @@
   <tabstop>cbx_extensions</tabstop>
   <tabstop>btn_ok</tabstop>
   <tabstop>btn_annuler</tabstop>
-  <tabstop>checkBox</tabstop>
+  <tabstop>cb_proxy</tabstop>
  </tabstops>
  <resources>
   <include location="../Icones/resources.qrc"/>
