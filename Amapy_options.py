@@ -24,6 +24,9 @@ class AmapyOptions(QMainWindow):
         # config de la tab par défaut
         self.ui.tabw_options.setCurrentIndex(0)
 
+        # Instenciation de la classe de configuration
+        self.config = configparser.ConfigParser(comment_prefixes='#', allow_no_value=True)
+
         # Déclaration des événements
         self.ui.btn_ok.clicked.connect(self.ok_clicked)
         self.ui.btn_annuler.clicked.connect(self.annuler_clicked)
