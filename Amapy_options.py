@@ -5,7 +5,7 @@ import configparser
 
 from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow, QFileDialog
 from PyQt6 import uic
-from pathlib import Path
+
 from fonctions_qt import AfficheMessages
 
 
@@ -15,6 +15,7 @@ class AmapyOptions(QMainWindow):
     """
 
     def __init__(self):
+        # Appel du construteur de la classe parent
         super().__init__()
 
         # Initialisation de variables
