@@ -1,5 +1,9 @@
 from PyQt6.QtWidgets import QMessageBox
 
+"""
+Collection de fonctions pour des classes utillisant qt6.
+"""
+
 
 def AfficheMessages(titre: str, texte: str, icone: QMessageBox.Icon, boutons: QMessageBox.StandardButton) -> None:
     """
