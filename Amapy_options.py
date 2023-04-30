@@ -110,6 +110,98 @@ class AmapyOptions(QMainWindow):
         if chemin_images:
             path = Path(chemin_images)
             self.ui.edt_images.setText(str(path))
+    def load_config(self) -> None:
+        """
+        Charge les parametres de configuration.
+        :return: None
+        """
+        # Déclaration de variables
+        rep_courant = os.getcwd()
+        option = ""
+
+        # Test de l'éxistance du fichier de configuration
+        if not os.path.isfile(os.path.join(rep_courant, "amapy.cfg")):
+            AfficheMessages("Information de configuration", "Le fichier de configuration n'existe "
+                                                            "pas.\nLes information par défaut seront "
+                                                            "utilisés.",
+                            QMessageBox.Icon.Information, QMessageBox.StandardButton.Ok)
+
+            self.ui.edt_bdd.setText(os.path.join(rep_courant, "bdd"))
+            self.ui.edt_export.setText(os.path.join(rep_courant, "export"))
+            self.ui.edt_images.setText(os.path.join(rep_courant, "images"))
+            # self.ui.cb_proxy.setCheckState(False)
+            return None
+        try:
+            with open(os.path.join(rep_courant, "amapy.cfg"), "r", encoding="utf-8") as file:
+                self.config.read_file(file)
+
+                # Gestion de répertoire de stockage de la BDD
+                option = self.config.get("fichier", "bdd", fallback=os.path.join(rep_courant, "bdd"))
+                if len(option.strip()) == 0:
+                    self.ui.edt_bdd.setText("CHEMIN VIDE")
+                    self.ui.edt_bdd.setStyleSheet("QLineEdit"
+                                                  "{""background : red;""}")
+                    self.verif_chemins[0] = False
+                elif not os.path.isdir(option):
+                    self.ui.edt_bdd.setText(f"{option} LE RÉPERTOIRE N'EXISTE PAS")
+                    self.ui.edt_bdd.setStyleSheet("QLineEdit"
+                                                  "{""background : red;""}")
+                    self.verif_chemins[0] = False
+                else:
+                    self.ui.edt_bdd.setText(option.strip())
+                    self.verif_chemins[0] = True
+
+                # Gestion de répertoire de stockage des exports
+                option = self.config.get("fichier", "export", fallback=os.path.join(rep_courant, "export"))
+                if len(option.strip()) == 0:
+                    self.ui.edt_export.setText("CHEMIN VIDE")
+                    self.ui.edt_export.setStyleSheet("QLineEdit"
+                                                  "{""background : red;""}")
+                    self.verif_chemins[1] = False
+                elif not os.path.isdir(option):
+                    self.ui.edt_export.setText(f"{option} LE RÉPERTOIRE N'EXISTE PAS")
+                    self.ui.edt_export.setStyleSheet("QLineEdit"
+                                                     "{""background : red;""}")
+                    self.verif_chemins[1] = False
+                else:
+                    self.ui.edt_export.setText(option.strip())
+                    self.verif_chemins[1] = True
+
+                # Gestion de répertoire de stockage des images
+                option = self.config.get("fichier", "images", fallback=os.path.join(rep_courant, "images"))
+                if len(option.strip()) == 0:
+                    self.ui.edt_images.setText("CHEMIN VIDE")
+                    self.ui.edt_images.setStyleSheet("QLineEdit"
+                                                     "{""background : red;""}")
+                    self.verif_chemins[2] = False
+
+                elif not os.path.isdir(option):
+                    self.ui.edt_images.setText(f"{option} LE RÉPERTOIRE N'EXISTE PAS")
+                    self.ui.edt_images.setStyleSheet("QLineEdit"
+                                                     "{""background : red;""}")
+                    self.verif_chemins[2] = False
+
+                else:
+                    self.ui.edt_images.setText(option.strip())
+                    self.verif_chemins[2] = True
+
+                # Gestion de l'extension des images
+                option = self.config.get("fichier", "extension", fallback="jpg")
+                if not option.strip() in self.list_extensions:
+                    self.ui.cbx_extensions.setCurrentIndex(0)
+                else:
+                    self.ui.cbx_extensions.setCurrentIndex(self.list_extensions.index(option.strip()))
+
+        except (FileNotFoundError, configparser.NoSectionError, configparser.NoOptionError,
+                configparser.MissingSectionHeaderError):
+            AfficheMessages("Erreur de chargement du fichier de configuration.",
+                            "Une erreur s'est produite lors du chargemend du fichier de configuration. Veuillez vérifier le contenu du fichier ou le supprimer.",
+                            QMessageBox.Icon.Critical, QMessageBox.StandardButton.Ok)
+        except ValueError:
+            AfficheMessages("Erreur de chargement du fichier de configuration.",
+                            "L'un des paramètres numériques est incorrecte. Utilisation des valeurs par défaut.",
+                            QMessageBox.Icon.Critical, QMessageBox.StandardButton.Ok)
+
     def write_config(self) -> None:
         # Déclaration de variables
         rep_courant = os.getcwd()
