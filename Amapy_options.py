@@ -72,7 +72,13 @@ class AmapyOptions(QMainWindow):
         Sauvegarde les parametres et ferme la fenêtre.
         :return: None
         """
-        self.close()
+        if self.verif_chemins[0] and self.verif_chemins[1] and self.verif_chemins[2]:
+            self.write_config()
+            self.close()
+        else:
+            AfficheMessages("Sauvegarde de la configuration impossible",
+                            "Veuillez vérifier les chemins de sauvegarde.", QMessageBox.Icon.Warning,
+                            QMessageBox.StandardButton.Ok)
 
     def annuler_clicked(self) -> None:
         """
@@ -90,6 +96,8 @@ class AmapyOptions(QMainWindow):
         if chemin_bdd:
             path = Path(chemin_bdd)
             self.ui.edt_bdd.setText(str(path))
+            self.ui.edt_bdd.setStyleSheet("")
+            self.verif_chemins[0] = True
 
     def tbtn_export_clicked(self) -> None:
         """
@@ -100,6 +108,8 @@ class AmapyOptions(QMainWindow):
         if chemin_export:
             path = Path(chemin_export)
             self.ui.edt_export.setText(str(path))
+            self.ui.edt_export.setStyleSheet("")
+            self.verif_chemins[1] = True
 
     def tbtn_images_clicked(self) -> None:
         """
@@ -110,6 +120,9 @@ class AmapyOptions(QMainWindow):
         if chemin_images:
             path = Path(chemin_images)
             self.ui.edt_images.setText(str(path))
+            self.ui.edt_images.setStyleSheet("")
+            self.verif_chemins[2] = True
+
     def load_config(self) -> None:
         """
         Charge les parametres de configuration.
