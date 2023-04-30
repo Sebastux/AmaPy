@@ -110,6 +110,26 @@ class AmapyOptions(QMainWindow):
         if chemin_images:
             path = Path(chemin_images)
             self.ui.edt_images.setText(str(path))
+    def write_config(self) -> None:
+        # Déclaration de variables
+        rep_courant = os.getcwd()
+        nom_config = os.path.join(rep_courant, "amapy.cfg")
+        try:
+            if not self.config.has_section("fichier"):
+                self.config.add_section("fichier")
+            if not self.config.has_section("reseau"):
+                self.config.add_section("reseau")
+            with open(nom_config, "w", encoding="utf-8") as file:
+                self.config.set("fichier", "bdd", self.ui.edt_bdd.text())
+                self.config.set("fichier", "export", self.ui.edt_export.text())
+                self.config.set("fichier", "images", self.ui.edt_images.text())
+                self.config.set("fichier", "extension", self.ui.cbx_extensions.currentText())
+                self.config.set("reseau", "proxy", "false")
+                self.config.write(file)
+        except (FileNotFoundError, PermissionError):
+            AfficheMessages("Erreur d'écriture du fichier",
+                            "Une erreur s'est produite lors de la sauvegarde des paramètres.",
+                            QMessageBox.Icon.Critical, QMessageBox.StandardButton.Ok)
 
 
 def main() -> None:
