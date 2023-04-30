@@ -57,6 +57,13 @@ class AmapyOptions(QMainWindow):
         Affiche la fenêtre de configuration de l'application.
         :return: None
         """
+        # initialisation de la liste des extensions
+        self.ui.cbx_extensions.clear()
+        self.ui.cbx_extensions.addItems(self.list_extensions)
+
+        # Chargement de la configuration
+        self.load_config()
+
         # Affichage de la fenêtre
         self.show()
 
