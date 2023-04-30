@@ -20,6 +20,8 @@ class AmapyOptions(QMainWindow):
 
         # Initialisation de variables
         self.ui = uic.loadUi(os.path.join("ui", "options_frm.ui"), self)
+        self.list_extensions = ["jpg", "jpeg", "png", "pdf"]
+        self.verif_chemins = [False, False, False]
 
         # config de la tab par défaut
         self.ui.tabw_options.setCurrentIndex(0)
