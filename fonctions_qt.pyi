@@ -5,7 +5,7 @@ Collection de fonctions pour des classes utillisant qt6.
 """
 
 
-def AfficheMessages(titre: str, texte: str, icone: QMessageBox.Icon, boutons: QMessageBox.StandardButton) -> None:
+def AfficheMessages(titre: str, texte: str, icone: QMessageBox.Icon, boutons: QMessageBox.StandardButton):
     """
     Fonction d'affichage des QMessageBox.
     :param titre: Titre de la boite de dialogue
