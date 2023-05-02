@@ -7,6 +7,7 @@ import os
 import random
 from datetime import date
 from PIL import Image
+from typing import Dict
 
 from bs4 import BeautifulSoup
 import requests
