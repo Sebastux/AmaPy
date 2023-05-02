@@ -175,3 +175,9 @@ class AmaScrapp:
 
     def export_to_json(self, chemin_fic: str) -> None:
          self.article.export_datas_to_json(chemin_fic)
+
+    def valide_amazon_url(self, url: str) -> bool:
+        if "https://www.amazon" in url:
+            return True
+        else:
+            return False

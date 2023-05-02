@@ -116,3 +116,12 @@ class AmaScrapp:
         :return: None
         """
         ...
+
+    def valide_amazon_url(self, url: str) -> bool:
+        """
+        Méthode permettant de vérifier que l'url est bien une url
+        d'Amazon
+        :param url: URL du produit à tester
+        :return: True si l'URL est bonne et False dans le cas contraire
+        """
+        ...
