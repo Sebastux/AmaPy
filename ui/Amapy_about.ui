@@ -10,14 +10,14 @@
     <x>0</x>
     <y>0</y>
     <width>667</width>
-    <height>578</height>
+    <height>614</height>
    </rect>
   </property>
   <property name="cursor">
    <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Propos de - Amapy</string>
+   <string>À Propos de - Amapy V 1.0.0</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="lbl_image">
@@ -54,36 +54,22 @@
       <x>0</x>
       <y>230</y>
       <width>671</width>
-      <height>281</height>
+      <height>331</height>
      </rect>
     </property>
     <property name="plainText">
-     <string>Amapy version 1.0.0
-
-Ce logiciel est fourni gratuitement pour une utilisation personnelle.
+     <string>Ce logiciel est fourni gratuitement pour une utilisation personnelle.
 Ce logiciel doit être utilisé pour surveiller le prix de produit vendu par amazon.
-Il utilise la technique du scrapping. Cette technique n'est pas très bien vu est peu être bloqué par Amazon en cas d'abus, le développeur ne peut être tenu pour responsable en cas d'abus.
-Vous êtes autorisé à le distribuer gratuitement par le moyen que vous souhaitez.
-
-Ce logiciel est développé en python 3.11 et utilise les bibliothèques tiers suivantes :
-- Qt version 6.5.0
-- PyQt6 version 6.5.0
-- pandas version 2.0.1
-- XlsxWriter version 3.1.0
-- matplotlib 3.7.1
-- numpy 1.24.3
-- Pillow 9.5.0
-- requests 2.29.0
-- beautifulsoup4  4.12.2
-
-</string>
+Il utilise la technique du scrapping. Cette technique n'est pas très bien vu est peu être bloqué par Amazon en cas d'abus, le développeur ne peut être tenu pour responsable de cet d'abus.
+Vous êtes autorisé à distribuer ce logiciel gratuitement et par n'importe quel moyen électronique que vous souhaitez.
+Le code source est disponnible à l'adresse suivante : https://github.com/Sebastux/AmaPy</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_ok">
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>530</y>
+      <y>570</y>
       <width>80</width>
       <height>26</height>
      </rect>

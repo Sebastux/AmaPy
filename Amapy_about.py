@@ -1,8 +1,15 @@
+"""
+Module permettant de donner des informations sur l'application Amapy
+"""
+
 import sys
+import platform
 import os
 
 from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow
 from PyQt6 import uic
+import pandas as pd
+from importlib_metadata import version
 
 
 class AmapyAbout(QMainWindow):
@@ -20,6 +27,7 @@ class AmapyAbout(QMainWindow):
         :return: None
         """
         self.setup_window()
+        self.get_packages_version()
         self.show()
 
     def setup_window(self) -> None:
@@ -40,6 +48,24 @@ class AmapyAbout(QMainWindow):
 
         # Zone de text en lecture seule
         self.ui.ptedt_infos.setReadOnly(True)
+
+    def get_packages_version(self) -> None:
+        """
+        Affiche la version des principaux packages utilisés par l'application
+        :return: None
+        """
+        self.ui.ptedt_infos.appendPlainText("")
+        self.ui.ptedt_infos.appendPlainText(f"Ce logiciel est développé en python {platform.python_version()} et utilise les bibliothèques tiers suivants :")
+        self.ui.ptedt_infos.appendPlainText("- Qt version 6.5.0")
+        self.ui.ptedt_infos.appendPlainText(f"- PyQt6 version {version('PyQt6')}")
+        self.ui.ptedt_infos.appendPlainText(f"- pandas version {pd.__version__}")
+        self.ui.ptedt_infos.appendPlainText(f"- XlsxWriter version {version('XlsxWriter')}")
+        self.ui.ptedt_infos.appendPlainText(f"- matplotlib version {version('matplotlib')}")
+        self.ui.ptedt_infos.appendPlainText(f"- numpy version {version('numpy')}")
+        self.ui.ptedt_infos.appendPlainText(f"- Pillow version {version('Pillow')}")
+        self.ui.ptedt_infos.appendPlainText(f"- requests version {version('requests')}")
+        self.ui.ptedt_infos.appendPlainText(f"- beautifulsoup4 version {version('beautifulsoup4')}")
+        self.ui.ptedt_infos.appendPlainText(f"- xlrd version {version('xlrd')}")
 
 
 def main() -> None:
