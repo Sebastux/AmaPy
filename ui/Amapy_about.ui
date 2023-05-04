@@ -64,12 +64,17 @@ Ce logiciel est fourni gratuitement pour une utilisation personnelle.
 Ce logiciel doit être utilisé pour surveiller le prix de produit vendu par amazon.
 Il utilise la technique du scrapping. Cette technique n'est pas très bien vu est peu être bloqué par Amazon en cas d'abus, le développeur ne peut être tenu pour responsable en cas d'abus.
 Vous êtes autorisé à le distribuer gratuitement par le moyen que vous souhaitez.
-Ce logiciel est développé en python 3.11 et utilise les bibliothèques tiers suivantes :
 
-- Qt version 6.4.3
+Ce logiciel est développé en python 3.11 et utilise les bibliothèques tiers suivantes :
+- Qt version 6.5.0
 - PyQt6 version 6.5.0
 - pandas version 2.0.1
 - XlsxWriter version 3.1.0
+- matplotlib 3.7.1
+- numpy 1.24.3
+- Pillow 9.5.0
+- requests 2.29.0
+- beautifulsoup4  4.12.2
 
 </string>
     </property>
