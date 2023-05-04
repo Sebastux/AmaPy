@@ -129,7 +129,7 @@ class AmaScrapp:
                 self.article.chemin_image = ""
             raise
 
-    def get_article(self, url: str) -> None:
+    def get_article(self, url: str) -> bool:
         # Déclaration de variables
         self.article.url = url
         self.get_user_agent()
@@ -145,9 +145,12 @@ class AmaScrapp:
             self.get_article_review(soup)
             self.get_article_status(soup)
             self.get_article_description(soup)
-            self.get_article_image(soup, repertoire="/home/Sebastien/Dépots/publique/AmaPy/images/", chemin_ko="/home/Sebastien/Dépots/publique/AmaPy/images/no_image.jpg")
+            self.get_article_image(soup, repertoire="/home/Sebastien/Dépots/publique/AmaPy/images/",
+                                   chemin_ko="/home/Sebastien/Dépots/publique/AmaPy/images/no_image.jpg")
             self.article.date_creation = date.today().strftime("%d/%m/%Y")
             self.article.date_maj = date.today().strftime("%d/%m/%Y")
+            return True
+        return False
 
     def export_to_dict(self) -> Dict:
         # Déclaration de variables
