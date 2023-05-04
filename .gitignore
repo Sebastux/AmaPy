@@ -125,8 +125,8 @@ dmypy.json
 # fichiers pycharm
 .idea
 
-# Répertoire de la DB
-bdd
+# Fichiers DB
+*.db
 
 # Répertoire de stockage des pages web
 TestPages
@@ -140,3 +140,7 @@ TestPages
 # Autorisation de fichiers dans certain répertoire
 !Icones/*.png
 !Icones/*.ico
+
+# Suppression des fichiers de config
+*.cfg
+*.ini
