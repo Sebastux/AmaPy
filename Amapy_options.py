@@ -169,7 +169,7 @@ class AmapyOptions(QMainWindow):
                 if len(option.strip()) == 0:
                     self.ui.edt_export.setText("CHEMIN VIDE")
                     self.ui.edt_export.setStyleSheet("QLineEdit"
-                                                  "{""background : red;""}")
+                                                     "{""background : red;""}")
                     self.verif_chemins[1] = False
                 elif not os.path.isdir(option):
                     self.ui.edt_export.setText(f"{option} LE RÉPERTOIRE N'EXISTE PAS")
@@ -235,6 +235,18 @@ class AmapyOptions(QMainWindow):
             AfficheMessages("Erreur d'écriture du fichier",
                             "Une erreur s'est produite lors de la sauvegarde des paramètres.",
                             QMessageBox.Icon.Critical, QMessageBox.StandardButton.Ok)
+
+    def get_chemin_export(self) -> str:
+        self.load_config()
+        return self.ui.edt_export.text()
+
+    def get_chemin_bdd(self) -> str:
+        self.load_config()
+        return self.ui.edt_bdd.text()
+
+    def get_chemin_images(self) -> str:
+        self.load_config()
+        return self.ui.edt_images.text()
 
 
 def main() -> None:
