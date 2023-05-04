@@ -78,11 +78,11 @@ class AmaScrapp:
         """
         ...
 
-    def get_article(self, url: str) -> None:
+    def get_article(self, url: str) -> bool:
         """
         Méthode qui permet la récupération de l'ensemble des informations du produit
         :param url: url du produit à traiter
-        :return: None
+        :return: True si l'import a été réalisé et False dans le cas contraire
         """
         ...
 
