@@ -1,7 +1,3 @@
-"""
-Module permettant de donner des informations sur l'application Amapy
-"""
-
 import sys
 import platform
 import os
@@ -13,28 +9,16 @@ from importlib_metadata import version
 
 
 class AmapyAbout(QMainWindow):
-    """
-    Affiche la fenetre d'à propos de l'application.
-    """
-
     def __init__(self):
         super().__init__()
         self.ui = uic.loadUi(os.path.join("ui", "Amapy_about.ui"), self)
 
     def show_about(self) -> None:
-        """
-        Affiche la fenetre d'à propos de l'application.
-        :return: None
-        """
         self.setup_window()
         self.get_packages_version()
         self.show()
 
     def setup_window(self) -> None:
-        """
-        Configure la fenêtre d'options de l'application.
-        :return: None
-        """
         # Taille fixe pour la fenêtre
         self.setFixedWidth(self.frameGeometry().width())
         self.setFixedHeight(self.frameGeometry().height())
@@ -50,10 +34,6 @@ class AmapyAbout(QMainWindow):
         self.ui.ptedt_infos.setReadOnly(True)
 
     def get_packages_version(self) -> None:
-        """
-        Affiche la version des principaux packages utilisés par l'application
-        :return: None
-        """
         self.ui.ptedt_infos.appendPlainText("")
         self.ui.ptedt_infos.appendPlainText(f"Ce logiciel est développé en python {platform.python_version()} et utilise les bibliothèques tiers suivants :")
         self.ui.ptedt_infos.appendPlainText("- Qt version 6.5.0")
@@ -69,10 +49,6 @@ class AmapyAbout(QMainWindow):
 
 
 def main() -> None:
-    """
-    Fonction principale de l'application.
-    :return: None
-    """
     app = QApplication(sys.argv)
     about = AmapyAbout()
     about.setup_window()
