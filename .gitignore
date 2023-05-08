@@ -131,15 +131,13 @@ dmypy.json
 # Répertoire de stockage des pages web
 TestPages
 
-*.jpg
-*.png
-*.ico
+# Fichiers d'export
 *.xlsx
 *.csv
-
-# Autorisation de fichiers dans certain répertoire
-!Icones/*.png
-!Icones/*.ico
+export/**/*.png
+export/**/*.jpg
+images/**/*.png
+images/**/*.jpg
 
 # Suppression des fichiers de config
 *.cfg
