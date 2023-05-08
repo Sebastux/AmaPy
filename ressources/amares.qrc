@@ -20,6 +20,8 @@
     <file>fichiers/Principal/icons8-domaine-94.png</file>
     <file>fichiers/Principal/icons8-info-94.png</file>
     <file>fichiers/Principal/icons8-sortie-48.png</file>
+    <file>fichiers/Principal/icons8-supprimer-48.png</file>
+    <file>fichiers/Principal/graphique-combiné.png</file>
   </qresource>
   <qresource prefix="About">
     <file>fichiers/About/4wj54hj1.png</file>
