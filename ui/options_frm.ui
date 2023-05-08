@@ -14,8 +14,8 @@
    <string>Amapy options</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../Icones/resources.qrc">
-    <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
+   <iconset resource="../ressources/amares.qrc">
+    <normaloff>:/Options/fichiers/Options/icons8-engrenage-94.png</normaloff>:/Options/fichiers/Options/icons8-engrenage-94.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabw_options">
@@ -191,6 +191,10 @@
       <property name="text">
        <string>...</string>
       </property>
+      <property name="icon">
+       <iconset resource="../ressources/amares.qrc">
+        <normaloff>:/Commun/fichiers/Commun/icons8-dossier-ouvert-94.png</normaloff>:/Commun/fichiers/Commun/icons8-dossier-ouvert-94.png</iconset>
+      </property>
      </widget>
      <widget class="QToolButton" name="tbtn_export">
       <property name="geometry">
@@ -204,6 +208,10 @@
       <property name="text">
        <string>...</string>
       </property>
+      <property name="icon">
+       <iconset resource="../ressources/amares.qrc">
+        <normaloff>:/Commun/fichiers/Commun/icons8-dossier-ouvert-94.png</normaloff>:/Commun/fichiers/Commun/icons8-dossier-ouvert-94.png</iconset>
+      </property>
      </widget>
      <widget class="QToolButton" name="tbtn_images">
       <property name="geometry">
@@ -216,6 +224,10 @@
       </property>
       <property name="text">
        <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../ressources/amares.qrc">
+        <normaloff>:/Commun/fichiers/Commun/icons8-dossier-ouvert-94.png</normaloff>:/Commun/fichiers/Commun/icons8-dossier-ouvert-94.png</iconset>
       </property>
      </widget>
     </widget>
@@ -253,6 +265,10 @@
     <property name="text">
      <string>&amp;Annuler</string>
     </property>
+    <property name="icon">
+     <iconset resource="../ressources/amares.qrc">
+      <normaloff>:/Commun/fichiers/Commun/icons8-effacer-94.png</normaloff>:/Commun/fichiers/Commun/icons8-effacer-94.png</iconset>
+    </property>
    </widget>
    <widget class="QPushButton" name="btn_ok">
     <property name="geometry">
@@ -275,6 +291,10 @@
     <property name="text">
      <string>&amp;OK</string>
     </property>
+    <property name="icon">
+     <iconset resource="../ressources/amares.qrc">
+      <normaloff>:/Commun/fichiers/Commun/icons8-coche-94.png</normaloff>:/Commun/fichiers/Commun/icons8-coche-94.png</iconset>
+    </property>
    </widget>
   </widget>
  </widget>
@@ -289,7 +309,7 @@
   <tabstop>cb_proxy</tabstop>
  </tabstops>
  <resources>
-  <include location="../Icones/resources.qrc"/>
+  <include location="../ressources/amares.qrc"/>
  </resources>
  <connections/>
 </ui>
