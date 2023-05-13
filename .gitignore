@@ -134,6 +134,7 @@ TestPages
 # Fichiers d'export
 *.xlsx
 *.csv
+*.json
 export/**/*.png
 export/**/*.jpg
 images/**/*.png
