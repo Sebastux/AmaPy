@@ -36,7 +36,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../ressources/4wj54hj1.png</pixmap>
+     <pixmap resource="../ressources/amares.qrc">:/About/goldotux</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -80,6 +80,10 @@ Le code source est disponnible à l'adresse suivante : https://github.com/Sebast
     <property name="text">
      <string>&amp;OK</string>
     </property>
+    <property name="icon">
+     <iconset resource="../ressources/amares.qrc">
+      <normaloff>:/Commun/fichiers/Commun/icons8-coche-94.png</normaloff>:/Commun/fichiers/Commun/icons8-coche-94.png</iconset>
+    </property>
    </widget>
   </widget>
  </widget>
@@ -87,7 +91,9 @@ Le code source est disponnible à l'adresse suivante : https://github.com/Sebast
   <tabstop>ptedt_infos</tabstop>
   <tabstop>btn_ok</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../ressources/amares.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>btn_ok</sender>

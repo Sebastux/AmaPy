@@ -14,7 +14,7 @@
    <string>Amapy options</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../ressources/amares.qrc">
+   <iconset>
     <normaloff>:/Options/fichiers/Options/icons8-engrenage-94.png</normaloff>:/Options/fichiers/Options/icons8-engrenage-94.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">

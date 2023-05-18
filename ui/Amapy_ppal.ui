@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../ressources/amares.qrc">
-    <normaloff>:/Commun/fichiers/Commun/amazon_logo_icon_134611.png</normaloff>:/Commun/fichiers/Commun/amazon_logo_icon_134611.png</iconset>
+    <normaloff>:/Commun/amapy_ppal</normaloff>:/Commun/amapy_ppal</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="maximumSize">
@@ -336,6 +336,7 @@
     <property name="title">
      <string>&amp;Aide</string>
     </property>
+    <addaction name="action_Options"/>
     <addaction name="actionA_propos"/>
     <addaction name="action_Licence"/>
     <addaction name="actionA_Ide"/>
@@ -437,14 +438,21 @@
   </action>
   <action name="actionA_propos">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Principal/fichiers/Principal/icons8-info-94.png</normaloff>:/Principal/fichiers/Principal/icons8-info-94.png</iconset>
+    <iconset resource="../ressources/amares.qrc">
+     <normaloff>:/Principal/about</normaloff>:/Principal/about</iconset>
    </property>
    <property name="text">
     <string>&amp;A propos</string>
    </property>
+   <property name="statusTip">
+    <string>Affiche des ionformations sur le logiciel</string>
+   </property>
   </action>
   <action name="action_Licence">
+   <property name="icon">
+    <iconset resource="../ressources/amares.qrc">
+     <normaloff>:/Principal/licence</normaloff>:/Principal/licence</iconset>
+   </property>
    <property name="text">
     <string>&amp;Licence</string>
    </property>
@@ -456,6 +464,15 @@
    </property>
    <property name="text">
     <string>A&amp;ide</string>
+   </property>
+  </action>
+  <action name="action_Options">
+   <property name="icon">
+    <iconset resource="../ressources/amares.qrc">
+     <normaloff>:/Options/options1</normaloff>:/Options/options1</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Options</string>
    </property>
   </action>
  </widget>

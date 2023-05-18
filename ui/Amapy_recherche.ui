@@ -13,8 +13,14 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../ressources/amares.qrc">
+    <normaloff>:/Principal/chercher</normaloff>:/Principal/chercher</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../ressources/amares.qrc"/>
+ </resources>
  <connections/>
 </ui>
