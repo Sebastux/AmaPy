@@ -7,6 +7,8 @@ from PyQt6 import uic
 import pandas as pd
 from importlib_metadata import version
 
+import amares
+
 
 class AmapyAbout(QMainWindow):
     def __init__(self):
