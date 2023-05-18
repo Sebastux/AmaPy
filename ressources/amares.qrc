@@ -12,22 +12,23 @@
     <file>fichiers/Commun/icons8-sauvegarder-94.png</file>
   </qresource>
   <qresource prefix="Principal">
-    <file>fichiers/Principal/csv.png</file>
-    <file>fichiers/Principal/excel.ico</file>
-    <file>fichiers/Principal/fichier-json.png</file>
-    <file>fichiers/Principal/icons8-aide-94.png</file>
-    <file>fichiers/Principal/icons8-chercher-94.png</file>
-    <file>fichiers/Principal/icons8-domaine-94.png</file>
-    <file>fichiers/Principal/icons8-info-94.png</file>
-    <file>fichiers/Principal/icons8-sortie-48.png</file>
-    <file>fichiers/Principal/icons8-supprimer-48.png</file>
-    <file>fichiers/Principal/graphique-combiné.png</file>
+    <file alias="Raffraichir">fichiers/Principal/icons8-rafraîchir-188.png</file>
+    <file alias="csv">fichiers/Principal/csv.png</file>
+    <file alias="excel">fichiers/Principal/excel.ico</file>
+    <file alias="json">fichiers/Principal/fichier-json.png</file>
+    <file alias="aide">fichiers/Principal/icons8-aide-94.png</file>
+    <file alias="chercher">fichiers/Principal/icons8-chercher-94.png</file>
+    <file alias="telecharger">fichiers/Principal/icons8-domaine-94.png</file>
+    <file alias="about">fichiers/Principal/icons8-info-94.png</file>
+    <file alias="sortie">fichiers/Principal/icons8-sortie-48.png</file>
+    <file alias="supprimer">fichiers/Principal/icons8-supprimer-48.png</file>
+    <file alias="graphique">fichiers/Principal/graphique-combiné.png</file>
   </qresource>
   <qresource prefix="About">
-    <file>fichiers/About/4wj54hj1.png</file>
+    <file alias="goldotux">fichiers/About/4wj54hj1.png</file>
   </qresource>
   <qresource prefix="Options">
-    <file>fichiers/Options/icons8-engrenage-94.png</file>
-    <file>fichiers/Options/icons8-services-94.png</file>
+    <file alias="options1">fichiers/Options/icons8-engrenage-94.png</file>
+    <file alias="options2">fichiers/Options/icons8-services-94.png</file>
   </qresource>
 </RCC>
