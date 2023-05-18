@@ -1,6 +1,6 @@
 <RCC>
   <qresource lang="fr" prefix="Commun">
-    <file>fichiers/Commun/amazon_logo_icon_134611.png</file>
+    <file alias="amapy_ppal">fichiers/Commun/amazon_logo_icon_134611.png</file>
     <file>fichiers/Commun/amazon_logo_icon_147320.png</file>
     <file>fichiers/Commun/icons8-ajouter-le-dossier-94.png</file>
     <file>fichiers/Commun/icons8-argent-94.png</file>
@@ -11,7 +11,8 @@
     <file>fichiers/Commun/icons8-effacer-94.png</file>
     <file>fichiers/Commun/icons8-sauvegarder-94.png</file>
   </qresource>
-  <qresource prefix="Principal">
+  <qresource lang="fr" prefix="Principal">
+    <file alias="licence">fichiers/Principal/licence.png</file>
     <file alias="Raffraichir">fichiers/Principal/icons8-rafraîchir-188.png</file>
     <file alias="csv">fichiers/Principal/csv.png</file>
     <file alias="excel">fichiers/Principal/excel.ico</file>
