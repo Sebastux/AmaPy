@@ -19,7 +19,7 @@ class AmapyOptions(QMainWindow):
         super().__init__()
 
         # Initialisation de variables
-        self.ui = uic.loadUi(os.path.join("ui", "options_frm.ui"), self)
+        self.ui = uic.loadUi(os.path.join("ui", "Amapy_options.ui"), self)
         self.list_extensions = ["jpg", "jpeg", "png", "pdf"]
         self.verif_chemins = [False, False, False]
 

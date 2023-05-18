@@ -12,7 +12,7 @@ class AmapyLicence(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.ui = uic.loadUi(os.path.join("ui", "Amapy_licence_frm.ui"), self)
+        self.ui = uic.loadUi(os.path.join("ui", "Amapy_licence.ui"), self)
 
         # Chargement de fichier licence
         self.load_licence_file()
