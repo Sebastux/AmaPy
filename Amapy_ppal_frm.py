@@ -1,11 +1,15 @@
 import sys
 import os
 
+from PyQt6.QtGui import QIcon, QPixmap
 from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow, QTableWidgetItem
 from PyQt6 import uic
 
 from amazdb import AmazDB
 from Amapy_options import AmapyOptions
+from Amapy_about import AmapyAbout
+from Amapy_options import AmapyOptions
+from Amapy_licence import AmapyLicence
 import amares
 
 
@@ -23,6 +27,11 @@ class AmapyPpal(QMainWindow):
         self.chemin_images = self.options.get_chemin_images()
         self.chemin_export = self.options.get_chemin_export()
 
+        # Création d'objets pour les fenêtres annexes.
+        self.about = None
+        self.licence = None
+        self.options = None
+
         # Chargement de la base de données
         # self.db = AmazDB(os.path.join(self.chemin_db, "AmazDB.db"))
         print(self.chemin_db)
@@ -34,7 +43,9 @@ class AmapyPpal(QMainWindow):
         self.ui.pgb_amaprogress.setRange(0, self.nb_lignes)
 
         # Création des événements
-        # self.ui.tbtn_test.clicked.connect(self.config_view)
+        self.ui.actionA_propos.triggered.connect(self.about_show)
+        self.ui.action_Licence.triggered.connect(self.licence_show)
+        self.ui.action_Options.triggered.connect(self.options_show)
 
     def show_ppal(self) -> None:
         self.setup_window()
@@ -90,10 +101,26 @@ class AmapyPpal(QMainWindow):
             self.ui.tbw_amazdb.setItem(i, 8, QTableWidgetItem(str(result[i][8])))
             self.ui.pgb_amaprogress.setValue(i + 1)
 
+    def about_show(self) -> None:
+        self.about = AmapyAbout()
+        self.about.setup_window()
+        self.about.show_about()
+
+    def licence_show(self) -> None:
+        self.licence = AmapyLicence()
+        self.licence.setup_window()
+        self.licence.show_licence()
+
+    def options_show(self) -> None:
+        self.options = AmapyOptions()
+        self.options.setup_window()
+        self.options.show_options()
+
 
 def main() -> None:
     app = QApplication(sys.argv)
     frm_ppal = AmapyPpal()
+    frm_ppal.setWindowIcon(QIcon(QPixmap(":/Commun/amapy_ppal")))
     frm_ppal.setup_window()
     frm_ppal.show_ppal()
     sys.exit(app.exec())
