@@ -27,6 +27,12 @@ class AmapyAbout(QMainWindow):
         :return: None
         """
 
+def about_menu() -> None:
+    """
+    Fonction qui permet d'afficher la fenetre lors d'un appel par une
+    autre classe.
+    :return: None
+    """
 def main() -> None:
     """
     Fonction principale de l'application.
