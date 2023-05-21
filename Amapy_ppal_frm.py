@@ -111,6 +111,15 @@ class AmapyPpal(QMainWindow):
         self.options.setup_window()
         self.options.show_options()
 
+    def quitter(self) -> None:
+        self.db.close_connection()
+        self.close()
+
+    def refresh_db(self) -> None:
+        print("refresh_db")
+        self.ui.tbw_amazdb.clear()
+        # self.load_db()
+
 
 def main() -> None:
     app = QApplication(sys.argv)
