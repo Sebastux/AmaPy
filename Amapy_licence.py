@@ -4,7 +4,6 @@ import os
 from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow
 from PyQt6 import uic
 
-import amares
 
 
 class AmapyLicence(QMainWindow):

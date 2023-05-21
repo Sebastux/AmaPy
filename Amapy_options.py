@@ -8,8 +8,6 @@ from PyQt6 import uic
 
 from fonctions_qt import AfficheMessages
 
-import amares
-
 
 class AmapyOptions(QMainWindow):
     """

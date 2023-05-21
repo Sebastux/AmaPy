@@ -10,7 +10,6 @@ from Amapy_options import AmapyOptions
 from Amapy_about import AmapyAbout
 from Amapy_options import AmapyOptions
 from Amapy_licence import AmapyLicence
-import amares
 
 
 class AmapyPpal(QMainWindow):
