@@ -25,3 +25,22 @@ class AmapyPpal(QMainWindow):
         de ses éléments.
         :return: None
         """
+
+    def quitter(self) -> None:
+        """
+        Méthode permettant de faire certaines actions lors de la fermeture de la
+        fenetre ppal
+        :return: None
+        """
+
+    def refresh_db(self) -> None:
+        """
+        Méthode permettant de raffraichir l'affichage du
+        :return: None
+        """
+
+    def recherche_produit(self) -> None:
+        """
+
+        :return:
+        """
