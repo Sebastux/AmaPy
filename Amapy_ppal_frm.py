@@ -32,7 +32,6 @@ class AmapyPpal(QMainWindow):
 
         # Chargement de la base de données
         # self.db = AmazDB(os.path.join(self.chemin_db, "AmazDB.db"))
-        print(self.chemin_db)
         self.db = AmazDB(os.path.join(self.chemin_db, "toto.db"))
         self.nb_lignes = self.db.make_request("SELECT count(*) FROM amatable;")[0][0]
 
