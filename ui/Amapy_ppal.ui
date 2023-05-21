@@ -20,8 +20,8 @@
    <string>Amapy scrapper de produit amazon</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../ressources/amares.qrc">
-    <normaloff>:/Commun/amapy_ppal</normaloff>:/Commun/amapy_ppal</iconset>
+   <iconset>
+    <normaloff>../ressources/Commun/amazonppal.png</normaloff>../ressources/Commun/amazonppal.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="maximumSize">
@@ -61,8 +61,8 @@
           <string>Ajouter</string>
          </property>
          <property name="icon">
-          <iconset resource="../ressources/amares.qrc">
-           <normaloff>:/Principal/telecharger</normaloff>:/Principal/telecharger</iconset>
+          <iconset>
+           <normaloff>../ressources/Principal/scrapper.png</normaloff>../ressources/Principal/scrapper.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -93,8 +93,8 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../ressources/amares.qrc">
-           <normaloff>:/Principal/chercher</normaloff>:/Principal/chercher</iconset>
+          <iconset>
+           <normaloff>../ressources/Principal/chercher.png</normaloff>../ressources/Principal/chercher.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -112,12 +112,15 @@
            <height>70</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Rafraichir l'affichage du contenu de la base de données suite à une modification.</string>
+         </property>
          <property name="text">
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../ressources/amares.qrc">
-           <normaloff>:/Principal/Raffraichir</normaloff>:/Principal/Raffraichir</iconset>
+          <iconset>
+           <normaloff>../ressources/Principal/rafraîchir.png</normaloff>../ressources/Principal/rafraîchir.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -148,8 +151,8 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../ressources/amares.qrc">
-           <normaloff>:/Principal/excel</normaloff>:/Principal/excel</iconset>
+          <iconset>
+           <normaloff>../ressources/Principal/excel.ico</normaloff>../ressources/Principal/excel.ico</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -180,8 +183,8 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../ressources/amares.qrc">
-           <normaloff>:/Principal/supprimer</normaloff>:/Principal/supprimer</iconset>
+          <iconset>
+           <normaloff>../ressources/Principal/supprimer.png</normaloff>../ressources/Principal/supprimer.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -215,8 +218,8 @@
           <string>Sortie</string>
          </property>
          <property name="icon">
-          <iconset resource="../ressources/amares.qrc">
-           <normaloff>:/Principal/sortie</normaloff>:/Principal/sortie</iconset>
+          <iconset>
+           <normaloff>../ressources/Principal/sortie.png</normaloff>../ressources/Principal/sortie.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -257,6 +260,9 @@
            <width>16777215</width>
            <height>900</height>
           </size>
+         </property>
+         <property name="statusTip">
+          <string>Affiche le contenu de la base de données.</string>
          </property>
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
@@ -302,7 +308,7 @@
       <string>&amp;Exporter</string>
      </property>
      <property name="icon">
-      <iconset resource="../ressources/amares.qrc">
+      <iconset>
        <normaloff>:/Commun/fichiers/Commun/icons8-sauvegarder-94.png</normaloff>:/Commun/fichiers/Commun/icons8-sauvegarder-94.png</iconset>
      </property>
      <addaction name="action_Un_produit"/>
@@ -310,6 +316,9 @@
      <addaction name="actionE_xport_au_format_json"/>
     </widget>
     <widget class="QMenu" name="menu_Importer">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>&amp;Importer</string>
      </property>
@@ -348,7 +357,7 @@
   <action name="action_Un_produit">
    <property name="icon">
     <iconset>
-     <normaloff>:/Principal/fichiers/Principal/excel.ico</normaloff>:/Principal/fichiers/Principal/excel.ico</iconset>
+     <normaloff>../ressources/Principal/excel.ico</normaloff>../ressources/Principal/excel.ico</iconset>
    </property>
    <property name="text">
     <string>&amp;Un produit (xlsx)</string>
@@ -357,7 +366,7 @@
   <action name="action_Plusieurs_produit_CSV">
    <property name="icon">
     <iconset>
-     <normaloff>:/Principal/fichiers/Principal/csv.png</normaloff>:/Principal/fichiers/Principal/csv.png</iconset>
+     <normaloff>../ressources/Principal/csv.png</normaloff>../ressources/Principal/csv.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Plusieurs produit (CSV)</string>
@@ -366,7 +375,7 @@
   <action name="actionE_xport_au_format_json">
    <property name="icon">
     <iconset>
-     <normaloff>:/Principal/fichiers/Principal/fichier-json.png</normaloff>:/Principal/fichiers/Principal/fichier-json.png</iconset>
+     <normaloff>../ressources/Principal/fichier-json.png</normaloff>../ressources/Principal/fichier-json.png</iconset>
    </property>
    <property name="text">
     <string>E&amp;xport au format json</string>
@@ -385,7 +394,7 @@
   <action name="action_Quitter">
    <property name="icon">
     <iconset>
-     <normaloff>:/Principal/fichiers/Principal/icons8-sortie-48.png</normaloff>:/Principal/fichiers/Principal/icons8-sortie-48.png</iconset>
+     <normaloff>../ressources/Principal/sortie.png</normaloff>../ressources/Principal/sortie.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Quitter</string>
@@ -397,7 +406,7 @@
   <action name="action_Supprimer_un_produit">
    <property name="icon">
     <iconset>
-     <normaloff>:/Principal/fichiers/Principal/icons8-supprimer-48.png</normaloff>:/Principal/fichiers/Principal/icons8-supprimer-48.png</iconset>
+     <normaloff>../ressources/Principal/supprimer.png</normaloff>../ressources/Principal/supprimer.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Supprimer un produit</string>
@@ -405,8 +414,8 @@
   </action>
   <action name="action_Mettre_tout_jour">
    <property name="icon">
-    <iconset resource="../ressources/amares.qrc">
-     <normaloff>:/Commun/fichiers/Commun/icons8-cloud-sync-94.png</normaloff>:/Commun/fichiers/Commun/icons8-cloud-sync-94.png</iconset>
+    <iconset>
+     <normaloff>../ressources/Principal/rafraîchir.png</normaloff>../ressources/Principal/rafraîchir.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Mettre tout à jour</string>
@@ -415,7 +424,7 @@
   <action name="action_Rechercher_un_produit">
    <property name="icon">
     <iconset>
-     <normaloff>:/Principal/fichiers/Principal/icons8-chercher-94.png</normaloff>:/Principal/fichiers/Principal/icons8-chercher-94.png</iconset>
+     <normaloff>../ressources/Principal/chercher.png</normaloff>../ressources/Principal/chercher.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Rechercher un produit</string>
@@ -424,7 +433,7 @@
   <action name="action_graph">
    <property name="icon">
     <iconset>
-     <normaloff>:/Principal/fichiers/Principal/graphique-combiné.png</normaloff>:/Principal/fichiers/Principal/graphique-combiné.png</iconset>
+     <normaloff>../ressources/Principal/graphique.png</normaloff>../ressources/Principal/graphique.png</iconset>
    </property>
    <property name="text">
     <string>Créer un &amp;graph</string>
@@ -438,8 +447,8 @@
   </action>
   <action name="actionA_propos">
    <property name="icon">
-    <iconset resource="../ressources/amares.qrc">
-     <normaloff>:/Principal/about</normaloff>:/Principal/about</iconset>
+    <iconset>
+     <normaloff>../ressources/Principal/info.png</normaloff>../ressources/Principal/info.png</iconset>
    </property>
    <property name="text">
     <string>&amp;A propos</string>
@@ -450,17 +459,20 @@
   </action>
   <action name="action_Licence">
    <property name="icon">
-    <iconset resource="../ressources/amares.qrc">
-     <normaloff>:/Principal/licence</normaloff>:/Principal/licence</iconset>
+    <iconset>
+     <normaloff>../ressources/Principal/licence.png</normaloff>../ressources/Principal/licence.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Licence</string>
    </property>
   </action>
   <action name="actionA_Ide">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset>
-     <normaloff>:/Principal/fichiers/Principal/icons8-aide-94.png</normaloff>:/Principal/fichiers/Principal/icons8-aide-94.png</iconset>
+     <normaloff>../ressources/Principal/aide.png</normaloff>../ressources/Principal/aide.png</iconset>
    </property>
    <property name="text">
     <string>A&amp;ide</string>
@@ -468,17 +480,15 @@
   </action>
   <action name="action_Options">
    <property name="icon">
-    <iconset resource="../ressources/amares.qrc">
-     <normaloff>:/Options/options1</normaloff>:/Options/options1</iconset>
+    <iconset>
+     <normaloff>../ressources/Principal/options.png</normaloff>../ressources/Principal/options.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Options</string>
    </property>
   </action>
  </widget>
- <resources>
-  <include location="../ressources/amares.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>tbtn_exit</sender>
