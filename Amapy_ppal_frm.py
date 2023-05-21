@@ -2,11 +2,10 @@ import sys
 import os
 
 from PyQt6.QtGui import QIcon, QPixmap
-from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow, QTableWidgetItem
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 from PyQt6 import uic
 
 from amazdb import AmazDB
-from Amapy_options import AmapyOptions
 from Amapy_about import AmapyAbout
 from Amapy_options import AmapyOptions
 from Amapy_licence import AmapyLicence
