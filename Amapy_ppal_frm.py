@@ -117,7 +117,7 @@ class AmapyPpal(QMainWindow):
 def main() -> None:
     app = QApplication(sys.argv)
     frm_ppal = AmapyPpal()
-    frm_ppal.setWindowIcon(QIcon(QPixmap(":/Commun/amapy_ppal")))
+    frm_ppal.setWindowIcon(QIcon(QPixmap(os.path.join("ressources/Commun", "amazonppal.png"))))
     frm_ppal.setup_window()
     frm_ppal.show_ppal()
     sys.exit(app.exec())
