@@ -19,16 +19,14 @@ class AmapyPpal(QMainWindow):
         # Chargement de l'interface
         self.ui = uic.loadUi(os.path.join("ui", "Amapy_ppal.ui"), self)
 
+        # Déclarations de variables
+        self.about = None
+        self.licence = None
         # Chargement des options du logiciel
         self.options = AmapyOptions()
         self.chemin_db = self.options.get_chemin_bdd()
         self.chemin_images = self.options.get_chemin_images()
         self.chemin_export = self.options.get_chemin_export()
-
-        # Création d'objets pour les fenêtres annexes.
-        self.about = None
-        self.licence = None
-        self.options = None
 
         # Chargement de la base de données
         # self.db = AmazDB(os.path.join(self.chemin_db, "AmazDB.db"))
