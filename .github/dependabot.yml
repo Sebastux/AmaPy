@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+      timezone: "Europe/Paris"
+      time: "09:00"
+    commit-message:
+      prefix: "Dpdbot"
+    target-branch: "develop"
+    labels:
+      - "actions dependencies"
+    open-pull-requests-limit: 10
