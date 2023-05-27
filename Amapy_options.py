@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 import configparser
 
-from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow, QFileDialog
+from PyQt6.QtWidgets import QApplication, QMessageBox, QMainWindow, QFileDialog
 from PyQt6 import uic
 
 from fonctions_qt import AfficheMessages

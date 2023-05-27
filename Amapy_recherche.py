@@ -2,7 +2,7 @@ import sys
 import os
 
 from PyQt6.QtGui import QIcon, QPixmap
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
+from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6 import uic
 
 

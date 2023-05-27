@@ -5,7 +5,6 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6 import uic
 
 
-
 class AmapyLicence(QMainWindow):
     """
     Affichage de la licence du logiciel.
