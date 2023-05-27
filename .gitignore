@@ -143,3 +143,6 @@ images/**/*.jpg
 # Suppression des fichiers de config
 *.cfg
 *.ini
+
+# config de linter
+!setup.cfg
