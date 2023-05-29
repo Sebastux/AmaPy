@@ -1,5 +1,6 @@
 import sys
 import os
+from typing import List
 
 from PyQt6.QtGui import QIcon, QPixmap
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
