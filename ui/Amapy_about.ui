@@ -36,7 +36,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../ressources/amares.qrc">:/About/goldotux</pixmap>
+     <pixmap>../ressources/About/goldotux.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -81,8 +81,8 @@ Le code source est disponnible à l'adresse suivante : https://github.com/Sebast
      <string>&amp;OK</string>
     </property>
     <property name="icon">
-     <iconset resource="../ressources/amares.qrc">
-      <normaloff>:/Commun/fichiers/Commun/icons8-coche-94.png</normaloff>:/Commun/fichiers/Commun/icons8-coche-94.png</iconset>
+     <iconset>
+      <normaloff>../ressources/Commun/valide.png</normaloff>../ressources/Commun/valide.png</iconset>
     </property>
    </widget>
   </widget>
