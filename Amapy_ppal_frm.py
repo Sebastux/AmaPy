@@ -122,9 +122,10 @@ class AmapyPpal(QMainWindow):
             self.ui.pgb_amaprogress.setValue(i + 1)
 
     def about_show(self) -> None:
-        self.about = AmapyAbout()
-        self.about.setup_window()
-        self.about.show_about()
+        about = AmapyAbout()
+        about.setWindowIcon(QIcon(QPixmap(os.path.join("ressources/Principal", "info.png"))))
+        about.setup_window()
+        about.show_about()
 
     def licence_show(self) -> None:
         self.licence = AmapyLicence()
