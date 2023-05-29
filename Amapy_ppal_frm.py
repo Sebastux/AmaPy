@@ -23,6 +23,10 @@ class AmapyPpal(QMainWindow):
         # Déclarations de variables
         self.about = None
         self.licence = None
+        self.recherche = None
+        self.affiche_recherche = False
+        self.ui.frme_recherche.hide()
+
         # Chargement des options du logiciel
         self.options = AmapyOptions()
         self.chemin_db = self.options.get_chemin_bdd()
@@ -42,6 +46,12 @@ class AmapyPpal(QMainWindow):
         self.ui.actionA_propos.triggered.connect(self.about_show)
         self.ui.action_Licence.triggered.connect(self.licence_show)
         self.ui.action_Options.triggered.connect(self.options_show)
+        self.ui.action_Quitter.triggered.connect(self.quitter)
+        self.ui.tbtn_exit.clicked.connect(self.quitter)
+        self.ui.action_Mettre_tout_jour.triggered.connect(self.refresh_db)
+        self.ui.tbtn_rafraichir.clicked.connect(self.refresh_db)
+        self.ui.tbtn_rechercher.clicked.connect(self.recherche_produit)
+        self.ui.btn_frame_chercher.clicked.connect(self.recherche_infos)
 
     def show_ppal(self) -> None:
         self.setup_window()
