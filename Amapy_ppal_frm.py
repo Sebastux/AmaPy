@@ -142,9 +142,31 @@ class AmapyPpal(QMainWindow):
         self.close()
 
     def refresh_db(self) -> None:
-        print("refresh_db")
         self.ui.tbw_amazdb.clear()
-        # self.load_db()
+        resultat = self.load_db()
+        self.show_result(resultat)
+
+    def recherche_produit(self) -> None:
+        if self.affiche_recherche == True:
+            self.ui.frme_recherche.hide()
+        else:
+            self.ui.frme_recherche.show()
+
+        self.affiche_recherche = not self.affiche_recherche
+
+    def recherche_infos(self) -> None:
+        recherche = f'amatable.nom_produit = "{self.ui.edt_frame_chercher.text()}"'
+
+        # Récupération du contenu de la DB
+        with open(os.path.join("requetes", "name_search.sql"), "r+t", encoding="utf-8") as f:
+            requete = f.read()
+
+        if len(self.ui.edt_frame_chercher.text()) == 0:
+            self.ui.edt_frame_chercher.setStyleSheet("QLineEdit {background : red;}")
+        else:
+            self.ui.edt_frame_chercher.setStyleSheet("")
+            resultat = self.db.make_request(requete.format(recherche = recherche))
+            self.show_result(resultat)
 
 
 def main() -> None:
