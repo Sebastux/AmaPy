@@ -152,13 +152,11 @@ class AmapyOptions(QMainWindow):
                 option = self.config.get("fichier", "bdd", fallback=os.path.join(rep_courant, "bdd"))
                 if len(option.strip()) == 0:
                     self.ui.edt_bdd.setText("CHEMIN VIDE")
-                    self.ui.edt_bdd.setStyleSheet("QLineEdit"
-                                                  "{""background : red;""}")
+                    self.ui.edt_bdd.setStyleSheet("QLineEdit {background : red;}")
                     self.verif_chemins[0] = False
                 elif not os.path.isdir(option):
                     self.ui.edt_bdd.setText(f"{option} LE RÉPERTOIRE N'EXISTE PAS")
-                    self.ui.edt_bdd.setStyleSheet("QLineEdit"
-                                                  "{""background : red;""}")
+                    self.ui.edt_bdd.setStyleSheet("QLineEdit {background : red;}")
                     self.verif_chemins[0] = False
                 else:
                     self.ui.edt_bdd.setText(option.strip())
@@ -168,13 +166,11 @@ class AmapyOptions(QMainWindow):
                 option = self.config.get("fichier", "export", fallback=os.path.join(rep_courant, "export"))
                 if len(option.strip()) == 0:
                     self.ui.edt_export.setText("CHEMIN VIDE")
-                    self.ui.edt_export.setStyleSheet("QLineEdit"
-                                                     "{""background : red;""}")
+                    self.ui.edt_export.setStyleSheet("QLineEdit {background : red;}")
                     self.verif_chemins[1] = False
                 elif not os.path.isdir(option):
                     self.ui.edt_export.setText(f"{option} LE RÉPERTOIRE N'EXISTE PAS")
-                    self.ui.edt_export.setStyleSheet("QLineEdit"
-                                                     "{""background : red;""}")
+                    self.ui.edt_export.setStyleSheet("QLineEdit {background : red;}")
                     self.verif_chemins[1] = False
                 else:
                     self.ui.edt_export.setText(option.strip())
@@ -184,14 +180,12 @@ class AmapyOptions(QMainWindow):
                 option = self.config.get("fichier", "images", fallback=os.path.join(rep_courant, "images"))
                 if len(option.strip()) == 0:
                     self.ui.edt_images.setText("CHEMIN VIDE")
-                    self.ui.edt_images.setStyleSheet("QLineEdit"
-                                                     "{""background : red;""}")
+                    self.ui.edt_images.setStyleSheet("QLineEdit {background : red;}")
                     self.verif_chemins[2] = False
 
                 elif not os.path.isdir(option):
                     self.ui.edt_images.setText(f"{option} LE RÉPERTOIRE N'EXISTE PAS")
-                    self.ui.edt_images.setStyleSheet("QLineEdit"
-                                                     "{""background : red;""}")
+                    self.ui.edt_images.setStyleSheet("QLineEdit {background : red;}")
                     self.verif_chemins[2] = False
 
                 else:
