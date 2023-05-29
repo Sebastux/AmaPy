@@ -75,9 +75,11 @@ class AmapyPpal(QMainWindow):
         self.move(qr.topLeft())
 
     def config_view(self) -> None:
+        # Déclaration des variables
         header_h = ["Nom du produit", "Description du produit", "Note", "Évaluation", "Prix", "Monnaie",
                     "Status du produit", "Date d'ajout", "Date de mise à jour"]
         header_v = []
+        resultat = ""
 
         for i in range(self.nb_lignes):
             header_v.append(str(i + 1))
@@ -87,14 +89,26 @@ class AmapyPpal(QMainWindow):
         self.ui.tbw_amazdb.setHorizontalHeaderLabels(header_h)
         self.ui.tbw_amazdb.setVerticalHeaderLabels(header_v)
 
-        self.load_db()
+        resultat = self.load_db()
+        self.show_result(resultat)
 
-    def load_db(self) -> None:
-        # Chargement de la requete de remplissage de la grille
+    def load_db(self) -> List[tuple]:
+        # Récupération du contenu de la DB
         with open(os.path.join("requetes", "load_db.sql"), "r+t", encoding="utf-8") as f:
             requete = f.read()
         result = self.db.make_request(requete)
 
+        return result
+
+    def show_result(self, result: List[tuple]) -> None:
+        # Suppression des anciennes données
+        self.ui.tbw_amazdb.clearContents()
+
+        # Configuration de la progress bar
+        self.ui.pgb_amaprogress.reset()
+        self.ui.pgb_amaprogress.setRange(0, len(result))
+
+        # Affichage des données
         for i in range(len(result)):
             self.ui.tbw_amazdb.setItem(i, 0, QTableWidgetItem(str(result[i][0])))
             self.ui.tbw_amazdb.setItem(i, 1, QTableWidgetItem(str(result[i][1])))
