@@ -32,7 +32,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QFrame" name="frame">
+     <widget class="QFrame" name="frme_bouton">
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
@@ -239,7 +239,40 @@
      </widget>
     </item>
     <item>
-     <widget class="QFrame" name="frame_2">
+     <widget class="QFrame" name="frme_recherche">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="lbl_frame_chercher">
+         <property name="text">
+          <string>Entrez le nom du produit à chercher : </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="edt_frame_chercher"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_frame_chercher">
+         <property name="text">
+          <string>&amp;Chercher</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../ressources/Principal/chercher.png</normaloff>../ressources/Principal/chercher.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="frme_progress">
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
