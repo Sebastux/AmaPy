@@ -1,7 +1,7 @@
 name: Suppression des anciens workflows
 on:
   schedule:
-    - cron: '0 20 4 6 *'
+    - cron: '20 20 4 6 *'
 # Run monthly, at 00:00 on the 1st day of month.
 
 jobs:
