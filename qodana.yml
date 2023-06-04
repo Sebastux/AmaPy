@@ -10,3 +10,5 @@ include:
   - name: DuplicateSectionInFile
 exclude:
   - name: CythonUsageBeforeDeclarationInspection
+  - name: toto.py
+  - name: test.py
