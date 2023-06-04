@@ -1,0 +1,12 @@
+pandas[excel, html, xml, plot]
+requests
+matplotlib
+Pillow
+beautifulsoup4
+PyQt6
+PyQt6-Charts
+importlib-metadata
+pyinstaller
+ruff
+pylint
+flake8
