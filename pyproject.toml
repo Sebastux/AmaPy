@@ -32,6 +32,9 @@ exclude = [
     "__pycache__",
     "test.py",
     "main_sauve.py",
+    "*.pyi",
+    "get_proxy.py",
+    "thread_sauve.py",
 ]
 per-file-ignores = {}
 
