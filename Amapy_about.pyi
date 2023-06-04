@@ -1,6 +1,8 @@
 """
 Module permettant de donner des informations sur l'application Amapy
 """
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 class AmapyAbout(QMainWindow):
     """

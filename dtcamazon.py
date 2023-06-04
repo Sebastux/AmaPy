@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 """
     Dataclass qui permet de gérer les données d'un produit amazon.
 """
