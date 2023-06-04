@@ -9,10 +9,3 @@ include:
   - name: DuplicateSectionInFile
 exclude:
   - name: CythonUsageBeforeDeclarationInspection
-paths:
-  - test.py
-  - toto.py
-  - *.pyi
-  - thread_sauve.py
-  - get_proxy.py
-  - pyproject.toml
