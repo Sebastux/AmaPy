@@ -1,3 +1,5 @@
+[![Qodana](https://github.com/Sebastux/AmaPy/actions/workflows/code_quality.yml/badge.svg?event=push)](https://github.com/Sebastux/AmaPy/actions/workflows/code_quality.yml)
+
 # AmaPy
 Projet en cours de développement.
 Ce projet va permettre de scapper (télécharger) les pages d'Amazon fournis par l'utilisateur.
