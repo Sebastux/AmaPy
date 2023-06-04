@@ -1,4 +1,6 @@
-[![Qodana](https://github.com/Sebastux/AmaPy/actions/workflows/code_quality.yml/badge.svg?event=push)](https://github.com/Sebastux/AmaPy/actions/workflows/code_quality.yml)
+[![Qodana](https://github.com/Sebastux/AmaPy/actions/workflows/code_quality.yml/badge.svg?branch=develop&event=push)](https://github.com/Sebastux/AmaPy/actions/workflows/code_quality.yml)
+
+[![Linter Python](https://github.com/Sebastux/AmaPy/actions/workflows/LinterPython.yml/badge.svg?branch=develop&event=push)](https://github.com/Sebastux/AmaPy/actions/workflows/LinterPython.yml)
 
 # AmaPy
 Projet en cours de développement.
