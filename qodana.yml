@@ -8,8 +8,63 @@ include:
   - name: CssMissingSemicolon
   - name: DuplicateKeyInSection
   - name: DuplicateSectionInFile
+  - name: SqlAddNotNullColumnInspection
+  - name: SqlAggregatesInspection
+  - name: SqlAmbiguousColumnInspection
+  - name: SqlAutoIncrementDuplicateInspection
+  - name: SqlCheckUsingColumnsInspection
+  - name: SqlShadowingAliasInspection
+  - name: SqlShouldBeInGroupByInspection
+  - name: SqlConstantConditionInspection
+  - name: SqlConstantExpressionInspection
+  - name: SqlCurrentSchemaInspection
+  - name: SqlWithoutWhereInspection
+  - name: SqlDeprecateTypeInspection
+  - name: SqlDuplicateColumnInspection
+  - name: SqlDerivedTableAliasInspection
+  - name: SqlSignatureInspection
+  - name: SqlIdentifierInspection
+  - name: SqlDtInspection
+  - name: SqlIllegalCursorStateInspection
+  - name: SqlStringLengthExceededInspection
+  - name: SqlDropIndexedColumnInspection
+  - name: SqlInsertNullIntoNotNullInspection
+  - name: SqlInsertIntoGeneratedColumnInspection
+  - name: SqlMisleadingReferenceInspection
+  - name: SqlMissingColumnAliasesInspection
+  - name: SqlMissingReturnInspection
+  - name: SqlMultipleLimitClausesInspection
+  - name: SqlNamedArgumentsInspection
+  - name: SqlNoDataSourceInspection
+  - name: SqlNullComparisonInspection
+  - name: SqlRedundantAliasInspection
+  - name: SqlRedundantCodeInCoalesceInspection
+  - name: SqlRedundantElseNullInspection
+  - name: SqlRedundantOrderingDirectionInspection
+  - name: SqlRedundantLimitInspection
+  - name: SqlDialectInspection
+  - name: SqlStorageInspection
+  - name: SqlSideEffectsInspection
+  - name: SqlTriggerTransitionInspection
+  - name: SqlTypeInspection
+  - name: SqlUnicodeStringLiteralInspection
+  - name: SqlUnreachableCodeInspection
+  - name: SqlResolveInspection
+  - name: SqlJoinWithoutOnInspection
+  - name: SqlUnusedCteInspection
+  - name: SqlUnusedSubqueryItemInspection
+  - name: SqlUnusedVariableInspection
+  - name: SqlGotoInspection
+  - name: SqlTransactionStatementInTriggerInspection
+  - name: SqlCaseVsCoalesceInspection
+  - name: SqlCaseVsIfInspection
+  - name: SqlCallNotationInspection
+  - name: SqlInsertValuesInspection
+  - name: IgnoreFileDuplicateEntry
 exclude:
   - name: CythonUsageBeforeDeclarationInspection
+  - name: PyInterpreterInspection
+  - name: PyUnresolvedReferencesInspection
   - name: toto.py
   - name: test.py
   - name: get_proxy.py
