@@ -82,7 +82,7 @@ class AmapyPpal(QMainWindow):
         header_h = ["Nom du produit", "Description du produit", "Note", "Évaluation", "Prix", "Monnaie",
                     "Status du produit", "Date d'ajout", "Date de mise à jour"]
         header_v = []
-        resultat = ""
+        # resultat = ""
 
         for i in range(self.nb_lignes):
             header_v.append(str(i + 1))

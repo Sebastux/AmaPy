@@ -22,7 +22,7 @@ class AmapyLicence(QMainWindow):
 
     def load_licence_file(self):
         # Déclaration des variables
-        licence = ""
+        # licence = ""
 
         # Chargement du fichier licence.
         try:
