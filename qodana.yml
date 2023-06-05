@@ -1,5 +1,5 @@
 version: 1.0
-bootstrap: pip install -r requirements-ci.txt
+bootstrap: python -m venv /data/cache/venv && /data/cache/venv/bin/pip install -r requirements-ci.txt
 linter: jetbrains/qodana-python:latest
 profile:
   name: qodana.recommended
@@ -75,3 +75,4 @@ exclude:
   - name: thread_sauve.py
 
 # - name: PyInterpreterInspection
+# pip install -r requirements-ci.txt
