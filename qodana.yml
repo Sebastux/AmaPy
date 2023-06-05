@@ -63,10 +63,11 @@ include:
   - name: IgnoreFileDuplicateEntry
 exclude:
   - name: CythonUsageBeforeDeclarationInspection
-  - name: PyInterpreterInspection
   - name: PyUnresolvedReferencesInspection
   - name: toto.py
   - name: test.py
   - name: get_proxy.py
   - name: pyproject.toml
   - name: thread_sauve.py
+
+# - name: PyInterpreterInspection
