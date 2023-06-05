@@ -1,11 +1,12 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import sys
 import os
 
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6 import uic
 
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 class AmapyLicence(QMainWindow):
     """
