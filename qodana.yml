@@ -6,8 +6,6 @@ profile:
 include:
   - name: CheckDependencyLicenses
   - name: CssMissingSemicolon
-  - name: DuplicateKeyInSection
-  - name: DuplicateSectionInFile
   - name: SqlAddNotNullColumnInspection
   - name: SqlAggregatesInspection
   - name: SqlAmbiguousColumnInspection
@@ -64,6 +62,12 @@ include:
 exclude:
   - name: CythonUsageBeforeDeclarationInspection
   - name: PyUnresolvedReferencesInspection
+  - name: Restricted_Python_calls
+  - name: Query_restricted
+  - name: Query_bound_parameters
+  - name: Query_index_required
+  - name: AppEngineThreadsafeCGIHandlerInspection
+  - name: AppEngineThreadsafeInspection
   - name: toto.py
   - name: test.py
   - name: get_proxy.py
