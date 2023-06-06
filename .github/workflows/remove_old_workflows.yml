@@ -1,8 +1,9 @@
 name: Suppression des anciens workflows
 on:
   schedule:
-    - cron: '20 20 4 6 *'
+    - cron: '40 21 6 6 2'
 # Run monthly, at 00:00 on the 1st day of month.
+# - cron: '0 0 1 * *'
 
 jobs:
   del_runs:
@@ -13,9 +14,5 @@ jobs:
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
-          retain_days: 15
-          keep_minimum_runs: 10
-          delete_workflow_pattern: 'all'
-          delete_workflow_by_state_pattern: 'all'
-          delete_run_by_conclusion_pattern: 'all'
-          dry_run: 'all'
+          retain_days: 30
+          keep_minimum_runs: 6
