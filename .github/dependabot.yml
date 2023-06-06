@@ -10,5 +10,5 @@ updates:
       prefix: "Dpdbot"
     target-branch: "develop"
     labels:
-      - "actions dependencies"
+      - "enhancement"
     open-pull-requests-limit: 10
